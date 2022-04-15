@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunklittle_survey=self.webpackChunklittle_survey||[]).push([[218],{938:function(e,t,u){u.r(t);var l=u(7294);t.default=function(){return l.createElement("p",{style:{color:"white"}},"where you snoopin?")}}}]);
+//# sourceMappingURL=component---src-pages-404-tsx-8f656909878b08351a42.js.map
