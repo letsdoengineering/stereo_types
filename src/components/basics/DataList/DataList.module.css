@@ -1,0 +1,14 @@
+.data-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.item-key {
+    display: inline-block;
+    margin-inline-start: 0;
+}
+
+.item-value {
+    display: inline-block;
+    margin-inline-start: 0;
+}

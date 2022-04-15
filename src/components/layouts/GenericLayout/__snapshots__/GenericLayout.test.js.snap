@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`GenericLayout has not changed the JSX layout of the page from previous snapshot 1`] = `
+<main>
+  <div
+    className="header"
+  >
+    <h1
+      className="title title1 weightNormal"
+    >
+      Traveltek Cruise Search
+    </h1>
+  </div>
+  <div
+    className="mainContainer"
+  />
+  <footer
+    className="footer"
+  >
+    some footer content
+  </footer>
+</main>
+`;
