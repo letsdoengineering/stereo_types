@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ToggleSwitch should render correctly 1`] = `
+<label
+  className="container"
+>
+  <span
+    className="visually-hidden"
+  >
+    screen reader label
+  </span>
+  <input
+    checked={true}
+    onChange={[MockFunction]}
+    type="checkbox"
+  />
+  <span
+    className="slider"
+  />
+</label>
+`;

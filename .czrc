@@ -1,0 +1,52 @@
+{
+  "path": "cz-emoji",
+  "config": {
+    "cz-emoji": {
+      "skipQuestions": ["scope", "issues"],
+      "types": [
+        {
+          "emoji": "✨",
+          "code": ":sparkles:",
+          "description": "New feature",
+          "name": "feat"
+        },
+        {
+          "emoji": "🧩",
+          "code": ":jigsaw:",
+          "description": "Change to existing code",
+          "name": "change"
+        },
+        {
+          "emoji": "🐛",
+          "code": ":bug:",
+          "description": "Bug fix",
+          "name": "fix"
+        },
+        {
+          "emoji": "📚",
+          "code": ":books:",
+          "description": "Documentation",
+          "name": "docs"
+        },
+        {
+          "emoji": "🔨",
+          "code": ":hammer:",
+          "description": "Change to code that doesn't add code",
+          "name": "refactor"
+        },
+        {
+          "emoji": "🚨",
+          "code": ":rotating_light:",
+          "description": "Add/fix tests",
+          "name": "test"
+        },
+        {
+          "emoji": "🧹",
+          "code": ":broom:",
+          "description": "Changes that aren't to the code, e.g. tooling",
+          "name": "chore"
+         }
+      ]
+    }
+  }
+}

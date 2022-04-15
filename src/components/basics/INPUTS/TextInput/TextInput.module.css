@@ -1,0 +1,6 @@
+.text-input {
+    border: none;
+    color: var(--slate-gray);
+    font-size: 1rem;
+    width: 100%;
+}

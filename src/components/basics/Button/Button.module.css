@@ -1,0 +1,53 @@
+.button {
+    font-weight: 700;
+    font-size: 1rem;
+    background-color: var(--default-blue);
+    color: white;
+    border: 3px solid var(--default-blue);
+}
+
+.button-fill-space {
+    height: 100%;
+    width: 100%;
+    font-size: 1.2rem;
+}
+
+.button-secondary {
+    background: transparent;
+    color: var(--default-blue);
+}
+
+.button:hover {
+    cursor: pointer;
+    color: white;
+    background:  var(--light-blue);
+    border: 3px solid var(--light-blue);
+}
+
+.button:focus {
+    color: white;
+    background:  var(--light-blue);
+    border: 3px solid var(--light-blue);
+}
+
+.button-disabled {
+    background: gray;
+    color: black;
+    border: 3px solid transparent;
+}
+
+.button-disabled:hover {
+    cursor: not-allowed;
+    color: black;
+    background: gray;
+    border: 3px solid transparent;
+}
+
+
+.size-S {
+    padding: 0.5rem 1rem;
+}
+
+.size-M {
+    padding: 1.5rem 2rem
+}

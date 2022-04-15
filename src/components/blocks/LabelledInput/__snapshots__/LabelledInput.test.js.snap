@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LabelledTextInput has not changed the JSX layout of the page from previous snapshot 1`] = `
+<div
+  className="container"
+>
+  <label>
+    <span
+      className="labelText"
+    >
+      some label
+    </span>
+    <div
+      className="iconAndInput"
+    >
+      <span
+        className="icon"
+      >
+        <span
+          aria-hidden="true"
+          className="fas fa-calendar-day iconSizeL iconColorBlue"
+        />
+      </span>
+      <input
+        className="textInput"
+        type="text"
+      />
+    </div>
+  </label>
+</div>
+`;
