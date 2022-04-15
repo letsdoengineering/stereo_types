@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Card has not changed the JSX layout of the page from previous snapshot - isPadded=false 1`] = `
+<div
+  className="card"
+/>
+`;
+
+exports[`Card has not changed the JSX layout of the page from previous snapshot - isPadded=true 1`] = `
+<div
+  className="card cardPadded"
+/>
+`;

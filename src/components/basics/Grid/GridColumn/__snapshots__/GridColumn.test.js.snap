@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`GridColumn has not changed the JSX layout of the page from previous snapshot 1`] = `
+<div
+  className="gridColumn sizeAuto"
+>
+  Some column
+</div>
+`;

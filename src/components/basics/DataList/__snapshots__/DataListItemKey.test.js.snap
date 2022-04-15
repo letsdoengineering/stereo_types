@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DataListItemKey has not changed the JSX layout of the page from previous snapshot 1`] = `
+<dt
+  className="itemKey"
+>
+  a key
+</dt>
+`;

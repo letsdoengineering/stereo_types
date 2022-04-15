@@ -1,0 +1,61 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TabbedViews has not changed the JSX layout of the page from previous snapshot 1`] = `
+Array [
+  <div
+    className="gridRow tabSection"
+  >
+    <div
+      className="gridColumn size1"
+      role="tablist"
+    >
+      <button
+        aria-controls="view1-tab"
+        aria-selected={true}
+        className="tabButton highlighted"
+        id="view1-button"
+        onClick={[Function]}
+        role="tab"
+        type="button"
+      >
+        <span
+          className="sizeS weightNormal textGray"
+        >
+          view 1
+        </span>
+      </button>
+    </div>
+    <div
+      className="gridColumn size1"
+      role="tablist"
+    >
+      <button
+        aria-controls="view2-tab"
+        aria-selected={false}
+        className="tabButton"
+        id="view2-button"
+        onClick={[Function]}
+        role="tab"
+        type="button"
+      >
+        <span
+          className="sizeS weightNormal textGray"
+        >
+          view 2
+        </span>
+      </button>
+    </div>
+  </div>,
+  <div
+    className="spacingDouble spacing"
+  />,
+  <div
+    aria-labelledby="view1-button"
+    id="view1-tab"
+  >
+    <div>
+      some content for default view
+    </div>
+  </div>,
+]
+`;

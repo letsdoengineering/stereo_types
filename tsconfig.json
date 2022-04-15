@@ -1,0 +1,19 @@
+/*
+tsconfig specifies how TypeScript should handle the codebase
+See more: https://www.typescriptlang.org/tsconfig
+*/
+{
+  "compilerOptions": { // options to specify how the TS compiler should behave
+    "module": "commonjs", // specify the module system - commonjs for node based projects
+    "target": "ES6", // target ES standard - most modern browsers support ES6
+    "jsx": "preserve", // controls how JSX is emitted - preserve option means they are emitted unchanged
+    "lib": ["dom"], // include libraries of type definitions for built-in JS APIs that are compatible with the target
+    "strict": true, // turn all strict mode options on for the strictest type checking available
+    "noEmit": true, // do not emit compiler output files so that Babel can handle converting the TS to JS
+    "isolatedModules": true, // TypeScript will warn you if you have written certain code that can't be interpreted by a single-file transpilation
+    "esModuleInterop": true, // when set to false, TypeScript makes some assumptions about certain imports that aren't necessarily valid
+    "noUnusedLocals": true // report errors on unused local variables
+  },
+  "include": ["src/**/*"], // point ts compiler to our src file where we only expect ts files
+  "exclude": ["node_modules","public", ".cache"] // list directories you wish to exclude from TS compilation
+}

@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DataListItemValue has not changed the JSX layout of the page from previous snapshot 1`] = `
+<dd
+  className="itemValue"
+>
+  a value
+</dd>
+`;

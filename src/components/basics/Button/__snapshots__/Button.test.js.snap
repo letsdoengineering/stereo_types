@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Button has not changed the JSX layout of the page from previous snapshot 1`] = `
+<button
+  className="button sizeS buttonFillSpace"
+  type="submit"
+>
+  some button
+</button>
+`;

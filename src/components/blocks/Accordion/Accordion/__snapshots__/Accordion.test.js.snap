@@ -1,0 +1,81 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Accordion has not changed the JSX layout of the page from previous snapshot - default 1`] = `
+<div
+  className="accordionSection"
+>
+  <h3
+    className="title title3 weightNormal"
+  >
+    <button
+      aria-controls="accordion-content"
+      aria-expanded={false}
+      className="accordion"
+      id="accordion-accordion"
+      onClick={[Function]}
+      type="button"
+    >
+      <span
+        className="sizeS weightBold textGray"
+      >
+        Some Accordion
+      </span>
+      <span
+        aria-hidden="true"
+        className="fas fa-chevron-down iconSizeS iconColorGrey icon"
+      />
+    </button>
+  </h3>
+  <div
+    aria-labelledby="accordion-accordion"
+    className="accordionContent"
+    id="accordion-content"
+    role="region"
+    style={
+      Object {
+        "maxHeight": "0px",
+      }
+    }
+  />
+</div>
+`;
+
+exports[`Accordion has not changed the JSX layout of the page from previous snapshot - iconRight = true 1`] = `
+<div
+  className="accordionSection"
+>
+  <h3
+    className="title title3 weightNormal"
+  >
+    <button
+      aria-controls="accordion-content"
+      aria-expanded={false}
+      className="accordion accordionIconRight"
+      id="accordion-accordion"
+      onClick={[Function]}
+      type="button"
+    >
+      <span
+        className="sizeS weightBold textGray"
+      >
+        Some Accordion
+      </span>
+      <span
+        aria-hidden="true"
+        className="fas fa-chevron-down iconSizeS iconColorGrey icon accordionIconRight"
+      />
+    </button>
+  </h3>
+  <div
+    aria-labelledby="accordion-accordion"
+    className="accordionContent"
+    id="accordion-content"
+    role="region"
+    style={
+      Object {
+        "maxHeight": "0px",
+      }
+    }
+  />
+</div>
+`;

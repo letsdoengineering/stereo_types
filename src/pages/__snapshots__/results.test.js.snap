@@ -1,0 +1,104 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ResultsPage has not changed the JSX layout of the page from previous snapshot 1`] = `
+<main>
+  <div
+    className="header"
+  >
+    <h1
+      className="title title1 weightNormal"
+    >
+      Traveltek Cruise Search
+    </h1>
+  </div>
+  <div
+    className="mainContainer"
+  >
+    <div
+      className="gridRow gridRowPadded"
+    >
+      <div
+        className="gridColumn size3 gridColumnPadded"
+      >
+        <h2
+          className="title title2 weightNormal"
+        >
+          <span
+            className="sizeM weightBold textGray"
+          >
+            Filter
+          </span>
+        </h2>
+        <div
+          className="card cardPadded"
+        >
+          <div
+            className="gridRow gridRowPadded"
+          />
+          <div
+            className="gridRow gridRowPadded"
+          />
+        </div>
+      </div>
+      <div
+        className="gridColumn size9 gridColumnPadded"
+      >
+        <div
+          className="gridRow"
+        >
+          <ul
+            className="list listUnstyled"
+          >
+            <li
+              className=""
+            >
+              <a
+                className="link"
+                href="/"
+              >
+                <span
+                  className="sizeS weightNormal textGray"
+                >
+                  search
+                </span>
+              </a>
+            </li>
+            <li
+              className=""
+            >
+              <span
+                className="sizeS weightNormal textGray divider"
+              >
+                &gt;
+              </span>
+              <span
+                className="sizeS weightBold textGray"
+              >
+                results
+              </span>
+            </li>
+          </ul>
+        </div>
+        <div
+          className="gridRow"
+        >
+          <h2
+            className="title title2 weightNormal"
+          >
+            <span
+              className="sizeXL weightBold textGray"
+            >
+              Results
+            </span>
+          </h2>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer
+    className="footer"
+  >
+    some footer content
+  </footer>
+</main>
+`;

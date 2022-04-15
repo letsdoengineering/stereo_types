@@ -1,0 +1,104 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ErrorLayout has not changed the JSX layout of the page from previous snapshot 1`] = `
+<div
+  className="gridRow verticalCenter gridRowPadded"
+>
+  <div
+    className="gridColumn sizeAuto"
+  />
+  <div
+    className="gridColumn size7"
+  >
+    <h1
+      className="title title1 weightBold"
+    >
+      Oops!
+    </h1>
+    <div
+      className="spacingDouble spacing"
+    />
+    <h2
+      className="title title2 weightBold"
+    >
+      Sorry, there seems to be a problem :(
+    </h2>
+    <div
+      className="spacingDouble spacing"
+    />
+    <span
+      className="sizeS weightNormal textGray"
+    >
+      Some message to the user that says something or other and helps them along their merry way back to a safe part of the site
+    </span>
+    <div
+      className="spacingSingle spacing"
+    />
+    <span
+      className="sizeS weightNormal textGray"
+    >
+      Here are some helpful links:
+    </span>
+    <div
+      className="spacingSingle spacing"
+    />
+    <ul
+      className="itemSpacing"
+    >
+      <li
+        className="isLinks"
+      >
+        <a
+          className="link sizeS weightBold"
+          href=""
+        >
+          Link 1
+        </a>
+      </li>
+      <li
+        className="isLinks"
+      >
+        <a
+          className="link sizeS weightBold"
+          href=""
+        >
+          Link 2
+        </a>
+      </li>
+      <li
+        className="isLinks"
+      >
+        <a
+          className="link sizeS weightBold"
+          href=""
+        >
+          Link 3
+        </a>
+      </li>
+    </ul>
+    <div
+      className="spacingDouble spacing"
+    />
+    <div
+      className="gridRow"
+    >
+      <div
+        className="gridColumn size6"
+      >
+        <button
+          className="button sizeM"
+          type="button"
+        >
+          Go Back
+        </button>
+      </div>
+      <div
+        className="gridColumn size6"
+      />
+    </div>
+  </div>
+  <div
+    className="gridColumn sizeAuto"
+  />
+</div>
+`;
