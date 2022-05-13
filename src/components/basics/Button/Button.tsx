@@ -25,7 +25,7 @@ const Button: React.FC<ButtonProps> = ({
     disabled = false,
     className,
     buttonText,
-    fillSpace = true,
+    fillSpace = false,
     type = 'submit',
     size = 'S',
     onClick,

@@ -1,0 +1,13 @@
+.error {
+    display: flex;
+    margin: 1rem;
+    text-align: left;
+}
+
+.icon {
+    margin-right: 1rem;
+}
+
+.children-wrapper {
+    border: 2px solid var(--red);
+}

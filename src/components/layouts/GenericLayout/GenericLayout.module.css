@@ -4,3 +4,8 @@
     max-width: 78rem;
     min-width: 60rem;
 }
+
+.full-page {
+    text-align: center;
+    margin: 0 1rem;
+}
