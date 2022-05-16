@@ -6,8 +6,6 @@ import Button from '../../basics/Button/Button'
 import Checkbox from '../../basics/INPUTS/Checkbox/Checkbox'
 import GridRow from '../../basics/Grid/GridRow/GridRow'
 import GridColumn from '../../basics/Grid/GridColumn/GridColumn'
-import TextInput from '../../basics/INPUTS/TextInput/TextInput'
-import LabelledInput from '../../blocks/LabelledInput/LabelledInput'
 import Spacing from '../../basics/Spacing/Spacing'
 
 import {
@@ -16,22 +14,6 @@ import {
 } from '../../../utils/use-local-storage'
 import * as styles from './landingForm.module.css'
 import FieldError from '../../blocks/FieldError/FieldError'
-
-type DetailsForm = {
-    name: string | undefined
-    age: string | undefined
-    group: string | undefined
-    pictureSequence: Record<string, string>
-    characterFirst: boolean
-}
-// const detailsFormIsValid = (detailsFormData: DetailsForm): boolean => {
-//     let formValid: boolean
-//     formValid = detailsFormData.age ? !isNaN(parseInt(detailsFormData.age)) : false
-//     if (formValid) formValid = typeof detailsFormData.group == 'string'
-//     if (formValid) formValid = typeof detailsFormData.name == 'string'
-//     if (formValid) formValid = detailsFormData.pictureSequence !== INVALID
-//     return formValid
-// }
 
 const LandingForm: React.FC = () => {
     const {
@@ -53,19 +35,6 @@ const LandingForm: React.FC = () => {
     //     setDataToLocalStorage({}, 'proj') // clear out any previous local storage under 'proj'
     // }, [])
 
-    // const myOnSubmit = async (formData: DetailsForm): Promise<void> => {
-    const myOnSubmit = (formData: DetailsForm): void => {
-        console.log('my submit:', formData)
-        // if (detailsFormIsValid(formData)) {
-        //     setDataToLocalStorage({ details: formData }, 'proj')
-        //     setDataToLocalStorage({ group: formData.group }, 'keepOnce')
-        //     // await navigate(`/proj2`)
-        //     console.log('form is VERY valid', formData)
-        // } else {
-        //     console.log('FORM NOT VALID', formData)
-        // }
-    }
-
     return (
         <form
             onSubmit={handleSubmit(
@@ -76,51 +45,62 @@ const LandingForm: React.FC = () => {
                     pictureSequenceInput,
                     characterFirstInput,
                 }) => {
-                    myOnSubmit({
+                    const formData = {
                         age: ageInput,
                         group: groupInput,
                         name: nameInput,
                         pictureSequence: pictureSequenceInput,
                         characterFirst: characterFirstInput,
-                    })
+                    }
+                    console.log('my submit:', formData)
                 }
             )}
         >
-            <GridRow isPadded className={styles.form}>
-                <GridColumn isPadded>
-                    <label>
-                        Group:
-                        <TextInput {...register('groupInput', { required: true })} />
-                    </label>
-
+            <GridRow isPadded className={styles.detailsForm}>
+                <GridColumn className={styles.detailsFormColumn} isPadded>
+                    <FieldError
+                        errorMessage={'ERROR: should fill this one pls'}
+                        showError={errors.groupInput}
+                    >
+                        <label>
+                            Group:
+                            <input type='text' {...register('groupInput', { required: true })} />
+                        </label>
+                    </FieldError>
                     <FieldError
                         errorMessage={'ERROR: should fill this one pls'}
                         showError={errors.nameInput}
                     >
                         <label>
                             Name:
-                            <TextInput
+                            <input
+                                type='text'
                                 {...register('nameInput', { required: true })}
                                 name='nameInput'
                             />
                         </label>
                     </FieldError>
+                    <FieldError
+                        errorMessage={'ERROR: should fill this one pls'}
+                        showError={errors.ageInput}
+                    >
+                        <label>
+                            Age:
+                            <input type='text' {...register('ageInput', { required: true })} />
+                        </label>
+                    </FieldError>
 
-                    <TextInput {...register('ageInput', { required: true })} />
-                    <label>
-                        Character first or last?:
-                        <Checkbox
-                            id='character-first-input'
-                            name='characterFirstInput'
-                            isChecked={getValues('characterFirst')}
-                            value={getValues('characterFirstInput')}
-                            text='Display character choice last?'
-                            onChange={(): void => {
-                                console.log('character-first:', !getValues('characterFirst'))
-                                setValue('characterFirstInput', !getValues('characterFirst'))
-                            }}
-                        />
-                    </label>
+                    <Checkbox
+                        id='character-first-input'
+                        name='characterFirstInput'
+                        isChecked={getValues('characterFirst')}
+                        value={getValues('characterFirstInput')}
+                        text='Display character choice last?'
+                        onChange={(): void => {
+                            console.log('character-first:', !getValues('characterFirst'))
+                            setValue('characterFirstInput', !getValues('characterFirst'))
+                        }}
+                    />
                     <label>
                         Picture sequence:
                         <select {...register('pictureSequence')}>

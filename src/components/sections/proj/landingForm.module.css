@@ -1,8 +1,34 @@
-.form {
+.details-form {
     margin: auto;
     display: flex;
-    text-align: center;
+    text-align: left;
     align-content: center;
     max-width: 50rem;
     min-width: 32rem;
+    font-size: larger;
+}
+
+.details-form input,select {
+    margin-left: 1rem;
+}
+
+.details-form label {
+    display: block;
+}
+
+.details-form-column {
+    display: flex;
+    flex: none;
+    flex-direction: column;
+    padding: 1rem;
+    background-color: lightgray;
+    margin: 0 auto;
+}
+
+.details-form-column > * {
+    margin-bottom: 1rem;
+}
+
+.details-form-column:last-child {
+    margin-bottom: 0;
 }

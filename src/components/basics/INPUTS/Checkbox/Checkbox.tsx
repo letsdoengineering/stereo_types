@@ -48,7 +48,7 @@ const Checkbox: FunctionComponent<CheckboxProps> = ({
                 {...rest}
             />
             <span className={checkboxClassName} />
-            <Text className={textClassName}>{text}</Text>
+            <span className={textClassName}>{text}</span>
         </label>
     )
 }
