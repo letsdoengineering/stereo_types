@@ -1,6 +1,6 @@
 const gatsby = jest.requireActual('gatsby')
 
 module.exports = {
-    ...gatsby,
-    navigate: jest.fn(),
+  ...gatsby,
+  navigate: jest.fn(),
 }

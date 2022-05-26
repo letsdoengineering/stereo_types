@@ -25,3 +25,6 @@
 .icon-color-grey {
     color: var(--dark-gray)
 }
+.icon-color-red {
+    color: var(--red)
+}

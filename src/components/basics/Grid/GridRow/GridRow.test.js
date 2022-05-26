@@ -5,16 +5,16 @@ import { axe } from 'jest-axe'
 import * as React from 'react'
 
 describe('GridRow', () => {
-    it('has not changed the JSX layout of the page from previous snapshot', () => {
-        const tree = renderer.create(<GridRow>some row</GridRow>).toJSON()
+  it('has not changed the JSX layout of the page from previous snapshot', () => {
+    const tree = renderer.create(<GridRow>some row</GridRow>).toJSON()
 
-        expect(tree).toMatchSnapshot()
-    })
+    expect(tree).toMatchSnapshot()
+  })
 
-    it('renders the page DOM that is accessible', async () => {
-        const { container } = render(<GridRow>some row</GridRow>)
-        const results = await axe(container)
+  it('renders the page DOM that is accessible', async () => {
+    const { container } = render(<GridRow>some row</GridRow>)
+    const results = await axe(container)
 
-        expect(results).toHaveNoViolations()
-    })
+    expect(results).toHaveNoViolations()
+  })
 })

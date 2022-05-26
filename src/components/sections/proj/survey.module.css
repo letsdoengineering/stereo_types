@@ -13,7 +13,7 @@
     outline:  #26ABE2 solid 5px;
 }
 
-.character-image {
+.avatar-image {
     width: 250px;
     height: auto;
 }
@@ -21,4 +21,9 @@
 .smiley-image {
     width: 100px;
     height: auto;
+}
+
+.person-scene-image {
+    display: block;
+    margin: auto;
 }

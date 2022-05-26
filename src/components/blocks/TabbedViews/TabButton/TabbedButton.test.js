@@ -5,16 +5,16 @@ import { axe } from 'jest-axe'
 import TabButton from './TabButton'
 
 describe('TabButton', () => {
-    it('has not changed the JSX layout of the page from previous snapshot', () => {
-        const tree = renderer.create(<TabButton buttonText='some button' />).toJSON()
+  it('has not changed the JSX layout of the page from previous snapshot', () => {
+    const tree = renderer.create(<TabButton buttonText='some button' />).toJSON()
 
-        expect(tree).toMatchSnapshot()
-    })
+    expect(tree).toMatchSnapshot()
+  })
 
-    it('renders the page DOM that is accessible', async () => {
-        const { container } = render(<TabButton>some text</TabButton>)
-        const results = await axe(container)
+  it('renders the page DOM that is accessible', async () => {
+    const { container } = render(<TabButton>some text</TabButton>)
+    const results = await axe(container)
 
-        expect(results).toHaveNoViolations()
-    })
+    expect(results).toHaveNoViolations()
+  })
 })
