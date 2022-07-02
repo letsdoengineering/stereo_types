@@ -1,34 +1,32 @@
 .details-form {
-    margin: auto;
     display: flex;
     text-align: left;
     align-content: center;
-    max-width: 50rem;
-    min-width: 32rem;
     font-size: larger;
-}
-
-.details-form input,select {
-    margin-left: 1rem;
-}
-
-.details-form label {
-    display: block;
-}
-
-.details-form-column {
-    display: flex;
     flex: none;
     flex-direction: column;
-    padding: 1rem;
+    padding: 16px;
     background-color: lightgray;
     margin: 0 auto;
 }
 
-.details-form-column > * {
-    margin-bottom: 1rem;
+.details-form input,select {
+    margin-left: 16px;
 }
 
-.details-form-column:last-child {
+.details-form label {
+    /*display: flex;*/
+    color: var(--dark-gray);
+}
+.details-form button {
+    margin: 0 auto;
+    padding: 24px 60px;
+}
+
+.details-form > * {
+    margin-bottom: 18px;
+}
+
+.details-form:last-child {
     margin-bottom: 0;
 }

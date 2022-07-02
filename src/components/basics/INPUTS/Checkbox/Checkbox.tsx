@@ -1,5 +1,4 @@
 import React, { FunctionComponent } from 'react'
-import Text from '../../Text/Text'
 import * as checkboxStyles from './Checkbox.module.css'
 import getClassNames from '../../../../utils/get-class-names'
 
@@ -29,6 +28,8 @@ const Checkbox: FunctionComponent<CheckboxProps> = ({
   ...rest
 }) => {
   const textClassName = getClassNames({
+    defaultClasses: [`${checkboxStyles.label}`],
+
     conditionalClasses: { [`${checkboxStyles.unavailable}`]: !available },
   })
   const checkboxClassName = getClassNames({

@@ -1,8 +1,9 @@
 /* Customize the label (the container) */
 .container {
-    display: block;
+    display: flex;
+    align-items: center;
     position: relative;
-    padding-left: 2rem;
+    margin-left: 16px;
     cursor: pointer;
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -26,20 +27,22 @@
     box-shadow:         0 0 0 2px var(--focus);
 }
 
+.label {
+    font-size: var(--font-size-S);
+    color: var(--dark-gray);
+}
 /* Create a custom checkbox */
 .checkmark {
-    position: absolute;
-    top: 0;
-    left: 0;
+    margin-right: 4px;
     height: 1rem;
     width: 1rem;
-    border: 2px solid black;
+    border: 2px solid var(--dark-gray);
     background-color: white;
 }
 
 /* When checked add background */
 .container input:checked ~ .checkmark {
-    background-color: black;
+    background-color: var(--dark-gray);
 }
 
 /* When checked but unavailable add gray background */
@@ -61,7 +64,7 @@
 
 /* Style the checkmark/indicator */
 .container .checkmark:after {
-    left: 3px;
+    left: 5px;
     width: 6px;
     height: 10px;
     border: solid white;

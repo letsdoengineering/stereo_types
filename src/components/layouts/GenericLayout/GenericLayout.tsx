@@ -9,7 +9,7 @@ const GenericLayout: React.FC = ({ children }) => (
     <Head title='Engineering Survey for wee ones' />
     <main>
       <Heading>Engineering Survey for wee ones</Heading>
-      <div className={genericLayoutStyles.mainContainer}>{children}</div>
+      <div className={genericLayoutStyles.mainContent}>{children}</div>
     </main>
   </div>
 )

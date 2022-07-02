@@ -1,6 +1,7 @@
 .title {
     font-family: "Lucida Sans", "Lucida Grande", Arial, sans-serif;
     color: var(--dark-gray);
+    margin-bottom: 16px;
 }
 
 .title-1 {

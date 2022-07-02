@@ -21,12 +21,18 @@ const Radio: FunctionComponent<RadioProps> = ({
   onChange,
   value,
   label,
-  inputRef,
   ...rest
 }) => {
   return (
     <label>
-      <input checked={isChecked} id={id} onChange={onChange} type='radio' value={value} ref={inputRef} {...rest} />
+      <input
+        checked={isChecked}
+        id={id}
+        onChange={onChange}
+        type='radio'
+        value={value}
+        {...rest}
+      />
       <Text>{label}</Text>
     </label>
   )

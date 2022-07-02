@@ -1,7 +1,7 @@
 import React from 'react'
 
-import getClassNames from '../../../utils/get-class-names'
-import Text from '../../basics/Text/Text'
+import getClassNames from '../../../../utils/get-class-names'
+import Text from '../../../basics/Text/Text'
 import * as checkboxGroupStyles from './CheckboxGroup.module.css'
 
 type CheckboxGroupProps = Readonly<{
@@ -25,14 +25,12 @@ const CheckboxGroup: React.FC<CheckboxGroupProps> = ({
   })
 
   return (
-    <form>
-      <fieldset className={checkboxGroupStyles.container}>
-        <legend className={groupLabelClassName}>
-          <Text>{groupLabel}</Text>
-        </legend>
-        {children}
-      </fieldset>
-    </form>
+    <fieldset className={checkboxGroupStyles.container}>
+      <legend className={groupLabelClassName}>
+        <Text>{groupLabel}</Text>
+      </legend>
+      {children}
+    </fieldset>
   )
 }
 

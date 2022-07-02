@@ -1,13 +1,15 @@
-.error {
-    display: flex;
-    margin: 1rem;
-    text-align: left;
-}
-
-.icon {
-    margin-right: 1rem;
+.root {
+    border: 2px solid var(--red);
+    padding: 4px;
 }
 
 .children-wrapper {
-    border: 2px solid var(--red);
+    display: inline-flex;
+    margin-bottom: 4px;
 }
+.error-message {
+    font-size: smaller;
+    display: flex;
+    color: red;
+}
+

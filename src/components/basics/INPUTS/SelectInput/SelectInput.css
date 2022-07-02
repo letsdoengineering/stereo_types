@@ -28,7 +28,7 @@
 
 .rfs-menu-container {
     left: calc(-1rem - 1px) !important;
-    margin-top: 1.5rem !important;
+    margin-top: 24px !important;
     border: 1px solid var(--outline-gray) !important;
     border-radius: 0 !important;
     color: var(--slate-gray) !important;

@@ -7,7 +7,7 @@
     min-width: 45rem;
     min-height: 20rem;
     display: none;
-    padding: 1rem;
+    padding: 16px;
     z-index: 1;
 }
 
@@ -53,8 +53,8 @@
 }
 
 .header {
-    margin-right: 2.5rem;
-    margin-bottom: 0.5rem;
+    margin-right: 40px;
+    margin-bottom: 8px;
     display: flex;
     align-items: center;
 }
@@ -67,6 +67,6 @@
 /* close button is the last element in the dialog (for cycling tab back to modal), but needs visually placing in the top right for display */
 .closeButton {
     position: fixed;
-    top: 1rem;
-    right: 1.5rem;
+    top: 16px;
+    right: 24px;
 }

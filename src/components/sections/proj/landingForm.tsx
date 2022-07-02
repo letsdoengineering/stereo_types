@@ -1,135 +1,250 @@
-import React, { useEffect, useState } from 'react'
-import { useForm } from 'react-hook-form'
+import React, { FormEvent, useEffect, useState } from 'react'
 import { navigate } from 'gatsby'
 
 import Button from '../../basics/Button/Button'
 import Checkbox from '../../basics/INPUTS/Checkbox/Checkbox'
+import CheckboxGroup from '../../basics/INPUTS/CheckboxGroup/CheckboxGroup'
+import FieldError from '../../blocks/FieldError/FieldError'
 import GridRow from '../../basics/Grid/GridRow/GridRow'
-import GridColumn from '../../basics/Grid/GridColumn/GridColumn'
-import Spacing from '../../basics/Spacing/Spacing'
 import Heading from '../../basics/Heading/Heading'
 import Radio from '../../basics/INPUTS/Radio/Radio'
+import Spacing from '../../basics/Spacing/Spacing'
 import { getDataFromLocalStorage, setDataToLocalStorage } from '../../../utils/use-local-storage'
 import * as styles from './landingForm.module.css'
-import FieldError from '../../blocks/FieldError/FieldError'
 
+type FormData = {
+  age: string | number | undefined
+  group: string
+  name: string
+  pictureSequence: string
+  characterFirst: boolean
+  gender: 'M' | 'F'
+  quizSectionOrder: 'A' | 'B'
+}
+
+type FormValidatingFields = {
+  age: string | number | undefined
+  group: string
+  name: string
+  pictureSequence: string
+}
 const LandingForm: React.FC = () => {
-  const {
-    getValues,
-    handleSubmit,
-    setValue,
-    register,
-    formState: { errors },
-  } = useForm()
-  const [gender, setGender] = useState('F')
-  const [quizSectionOrder, setQuizSectionOrder] = useState('A')
-  // let genderInputFns: Record<string, any>
-  // let handleGenderChange: any
+  const [nameError, setNameError] = useState(false)
+  const [groupError, setGroupError] = useState(false)
+  const [ageError, setAgeError] = useState(false)
+  const [pictureSequenceError, setPictureSequenceError] = useState(false)
+  const [gender, setGender] = useState<'M' | 'F'>('F')
+  const [age, setAge] = useState<string | number | undefined>()
+  const [name, setName] = useState('')
+  const [group, setGroup] = useState('')
+  const [pictureSequence, setPictureSequence] = useState('')
+  const [characterFirst, setCharacterFirst] = useState(false)
+  const [quizSectionOrder, setQuizSectionOrder] = useState<'A' | 'B'>('A')
+
   useEffect(() => {
     const previouslySetGroup = getDataFromLocalStorage('keepOnce') // fetch previously submitted group value
     console.log('previously set group value', previouslySetGroup.group)
     if (previouslySetGroup.group) {
       console.log('setting group to:', previouslySetGroup)
-      setValue('group', previouslySetGroup.group)
+      setGroup(previouslySetGroup.group)
     } // if a group value exists set to form value for group
     setDataToLocalStorage({}, 'keepOnce') // clear out group value after fetching it.
     setDataToLocalStorage({}, 'proj') // clear out any previous local storage under 'proj'
-    // genderInputFns = register('genderInput')
-    // handleGenderChange = genderInputFns?.onChange
-    // register('quizSectionOrderInput')
   }, [])
 
+  const validateAge = (age: string | number | undefined): boolean => {
+    if (Number(age) >= 10 && Number(age) <= 240) {
+      setAgeError(false)
+      return true
+    } else {
+      setAgeError(true)
+      return false
+    }
+  }
+
+  const validateName = (name: string): boolean => {
+    if (name.length > 0) {
+      setNameError(false)
+      return true
+    } else {
+      setNameError(true)
+      return false
+    }
+  }
+
+  const validateGroup = (group: string): boolean => {
+    if (group.length > 0) {
+      setGroupError(false)
+      return true
+    } else {
+      setGroupError(true)
+      return false
+    }
+  }
+  const validatePictureSequence = (pictureSequence: string): boolean => {
+    const validSequenceValue = ['1', '2', '3', '4']
+    if (validSequenceValue.includes(pictureSequence)) {
+      setPictureSequenceError(false)
+      return true
+    } else {
+      setPictureSequenceError(true)
+      return false
+    }
+  }
+
+  const validateForm = ({ age, group, name, pictureSequence }: FormValidatingFields): boolean => {
+    const groupValid = validateGroup(group)
+    const nameValid = validateName(name)
+    const ageValid = validateAge(age)
+    const pictureValue = validatePictureSequence(pictureSequence)
+    return ageValid && nameValid && groupValid && pictureValue
+  }
+
+  const handleFormSubmit = async (event: FormEvent): Promise<void> => {
+    event.preventDefault()
+    const formData: FormData = {
+      age: age,
+      group: group,
+      name: name,
+      pictureSequence: pictureSequence,
+      characterFirst: characterFirst,
+      gender: gender,
+      quizSectionOrder: quizSectionOrder,
+    }
+    console.log('my submit:', formData)
+    const formIsValid = validateForm({ age, group, name, pictureSequence })
+    if (formIsValid) await navigate(`/proj2`)
+  }
+
   return (
-    <form
-      onSubmit={handleSubmit(
-        async ({
-          ageInput,
-          groupInput,
-          nameInput,
-          pictureSequenceInput,
-          characterFirstInput,
-          genderInput,
-          quizSectionOrderInput,
-        }) => {
-          const formData = {
-            age: ageInput,
-            group: groupInput,
-            name: nameInput,
-            pictureSequence: pictureSequenceInput,
-            characterFirst: characterFirstInput,
-            gender: genderInput,
-            quizSectionOrder: quizSectionOrderInput,
-          }
-          console.log('my submit:', formData)
-          // await navigate(`/proj2`)
-        }
-      )}
-    >
+    <form onSubmit={handleFormSubmit}>
       <GridRow isPadded className={styles.detailsForm}>
-        <GridColumn className={styles.detailsFormColumn} isPadded>
-          <Heading level='2'>Child Details</Heading>
-          <FieldError errorMessage={'Error, please enter a group'} showError={errors.groupInput}>
-            <label>
-              Group:
-              <input
-                autoComplete={'off'}
-                type='text'
-                {...register('groupInput', { required: true })}
-              />
-            </label>
-          </FieldError>
-          <FieldError errorMessage={'Error, please enter a name'} showError={errors.nameInput}>
-            <label>
-              Name:
-              <input type='text' {...register('nameInput', { required: true })} name='nameInput' />
-            </label>
-          </FieldError>
-          <FieldError errorMessage={'Error, please enter an age'} showError={errors.ageInput}>
-            <label>
-              Age:
-              <input type='text' {...register('ageInput', { required: true })} />
-            </label>
-          </FieldError>
-          <label>Gender:</label>
-          <fieldset>
+        <Heading level='2'>Enter Child Details:</Heading>
+        <FieldError
+          id='group-error'
+          errorMessage='Error: please enter a group name.'
+          showError={groupError}
+        >
+          <label>
+            Group:
+            <input
+              aria-describedby='group-error'
+              autoComplete='off'
+              type='text'
+              name='groupInput'
+              value={group}
+              onBlur={(event): void => {
+                validateGroup(event.target.value)
+              }}
+              onChange={(event): void => {
+                setGroup(event.target.value)
+              }}
+            />
+          </label>
+        </FieldError>
+        <FieldError
+          id='name-error'
+          errorMessage='Error: please enter a child name.'
+          showError={nameError}
+        >
+          <label>
+            Name:
+            <input
+              aria-describedby='name-error'
+              autoComplete='off'
+              type='text'
+              name='nameInput'
+              value={name}
+              onBlur={(event): void => {
+                validateName(event.target.value)
+              }}
+              onChange={(event): void => {
+                setName(event.target.value)
+              }}
+            />
+          </label>
+        </FieldError>
+        <FieldError
+          id='age-error'
+          errorMessage="Error: please enter child's age in months, from 12-240. (i.e 5yrs = 60)"
+          showError={ageError}
+        >
+          <label>
+            Age (in months):
+            <input
+              aria-describedby='age-error'
+              autoComplete='off'
+              type='text'
+              name='ageInput'
+              value={age}
+              onBlur={(event): void => {
+                validateAge(event.target.value)
+              }}
+              onChange={(event): void => {
+                setAge(event.target.value)
+              }}
+            />
+          </label>
+        </FieldError>
+        <label>
+          <div>Gender:</div>
+          <CheckboxGroup groupLabel='Gender'>
             <Radio
               onChange={(): void => {
                 setGender('F')
-                // setValue('genderInput', 'F')
-                // handleGenderChange(e.target.value)
               }}
               isChecked={gender === 'F'}
-              // isChecked={getValues('genderInput') === 'F'}
               label='Female'
               value='F'
             />
             <Radio
               onChange={(): void => {
                 setGender('M')
-                // setValue('genderInput', 'M')
-                // handleGenderChange(e.target.value)
               }}
               isChecked={gender === 'M'}
-              // isChecked={getValues('genderInput') === 'M'}
               label='Male'
               value='M'
             />
-          </fieldset>
-          <Checkbox
-            id='character-first-input'
-            name='characterFirstInput'
-            isChecked={getValues('characterFirst')}
-            value={getValues('characterFirstInput')}
-            text='Display character choice last?'
-            onChange={(): void => {
-              setValue('characterFirstInput', !getValues('characterFirst'))
-            }}
-          />
+          </CheckboxGroup>
+        </label>
+        <label>
+          <div>Character Choice Timing:</div>
+          <CheckboxGroup groupLabel='character choice location'>
+            <Checkbox
+              id='character-first-input'
+              name='characterFirstInput'
+              isChecked={characterFirst}
+              value={`${characterFirst}`}
+              text='Ask character choice last?'
+              onChange={(): void => {
+                setCharacterFirst(!characterFirst)
+              }}
+            />
+          </CheckboxGroup>
+        </label>
+        <FieldError
+          id='picture-sequence-error'
+          errorMessage='Error: please chose an option, (cycle through for each child pls)'
+          showError={pictureSequenceError}
+        >
           <label>
-            SmileyFace Picture sequence:
-            <select {...register('pictureSequence')}>
+            <div>SmileyFace Picture Sequence:</div>
+            <select
+              aria-describedby='picture-sequence-error'
+              name='pictureSequence'
+              onChange={(event): void => {
+                setPictureSequence(event.target.value)
+              }}
+              onBlur={(event): void => {
+                const value = event.target.value
+                validatePictureSequence(value)
+              }}
+              defaultValue='none'
+            >
+              <option value='none' disabled hidden>
+                -- please choose a sequence --
+              </option>
               {[
-                { label: '-- please choose one -- ', value: 'invalid' },
                 { label: 'Sequence 1', value: '1' },
                 { label: 'Sequence 2', value: '2' },
                 { label: 'Sequence 3', value: '3' },
@@ -143,14 +258,16 @@ const LandingForm: React.FC = () => {
               })}
             </select>
           </label>
-          <label>Quiz Section Order:</label>
-          <fieldset>
+        </FieldError>
+        <label>
+          <div>Quiz Section Order:</div>
+          <CheckboxGroup groupLabel='quiz section order'>
             <Radio
               onChange={(): void => {
                 setQuizSectionOrder('A')
               }}
               isChecked={quizSectionOrder === 'A'}
-              label='A'
+              label='A sequence'
               value='A'
             />
             <Radio
@@ -158,13 +275,13 @@ const LandingForm: React.FC = () => {
                 setQuizSectionOrder('B')
               }}
               isChecked={quizSectionOrder === 'B'}
-              label='B'
+              label='B sequence'
               value='B'
             />
-          </fieldset>
-          <Spacing />
-          <Button size='M' type='submit' buttonText='Submit' />
-        </GridColumn>
+          </CheckboxGroup>
+        </label>
+        <Spacing />
+        <Button aria-describedby='form-error' size='M' type='submit' buttonText='Submit' />
       </GridRow>
     </form>
   )

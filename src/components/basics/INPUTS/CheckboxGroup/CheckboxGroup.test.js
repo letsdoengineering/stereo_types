@@ -2,7 +2,7 @@ import React from 'react'
 import { render } from '@testing-library/react'
 import renderer from 'react-test-renderer'
 import { axe } from 'jest-axe'
-import Checkbox from '../../basics/INPUTS/Checkbox/Checkbox'
+import Checkbox from '../Checkbox/Checkbox'
 import CheckboxGroup from './CheckboxGroup'
 
 describe('CheckboxGroup', () => {
