@@ -1,14 +1,14 @@
 import React from 'react'
 import { useForm, FormProvider } from 'react-hook-form'
 import GenericLayout from '../components/layouts/GenericLayout/GenericLayout'
-import Survey from '../components/sections/proj/survey'
+import SmileyFaces from '../components/sections/proj/SmileyFaces'
 
 const IndexPage: React.FC = () => {
   const formFns = useForm()
   return (
     <FormProvider {...formFns}>
       <GenericLayout>
-        <Survey />
+        <SmileyFaces />
       </GenericLayout>
     </FormProvider>
   )

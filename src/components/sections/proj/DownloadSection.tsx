@@ -14,7 +14,6 @@ const DownloadSection: React.FC = () => {
       <BreadcrumbNav
         urlList={[
           { url: '/', label: 're-start' },
-          { url: '/proj2', label: 're-choose survey questions' },
           { label: 'download' },
         ]}
       />

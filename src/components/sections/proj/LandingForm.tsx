@@ -5,11 +5,9 @@ import Button from '../../basics/Button/Button'
 import Checkbox from '../../basics/INPUTS/Checkbox/Checkbox'
 import CheckboxGroup from '../../basics/INPUTS/CheckboxGroup/CheckboxGroup'
 import FieldError from '../../blocks/FieldError/FieldError'
-import GridRow from '../../basics/Grid/GridRow/GridRow'
 import Heading from '../../basics/Heading/Heading'
 import Radio from '../../basics/INPUTS/Radio/Radio'
 import Spacing from '../../basics/Spacing/Spacing'
-import { getDataFromLocalStorage, setDataToLocalStorage } from '../../../utils/use-local-storage'
 import * as styles from './landingForm.module.css'
 
 type FormData = {
@@ -42,14 +40,12 @@ const LandingForm: React.FC = () => {
   const [quizSectionOrder, setQuizSectionOrder] = useState<'A' | 'B'>('A')
 
   useEffect(() => {
-    const previouslySetGroup = getDataFromLocalStorage('keepOnce') // fetch previously submitted group value
-    console.log('previously set group value', previouslySetGroup.group)
-    if (previouslySetGroup.group) {
-      console.log('setting group to:', previouslySetGroup)
-      setGroup(previouslySetGroup.group)
-    } // if a group value exists set to form value for group
-    setDataToLocalStorage({}, 'keepOnce') // clear out group value after fetching it.
-    setDataToLocalStorage({}, 'proj') // clear out any previous local storage under 'proj'
+    const detailsFormString = window.sessionStorage.getItem('detailsForm')
+    const detailsForm = detailsFormString ? JSON.parse(detailsFormString) : null
+    if (detailsForm?.group) {
+      setGroup(detailsForm.group)
+      window.sessionStorage.clear()
+    }
   }, [])
 
   const validateAge = (age: string | number | undefined): boolean => {
@@ -61,7 +57,6 @@ const LandingForm: React.FC = () => {
       return false
     }
   }
-
   const validateName = (name: string): boolean => {
     if (name.length > 0) {
       setNameError(false)
@@ -71,7 +66,6 @@ const LandingForm: React.FC = () => {
       return false
     }
   }
-
   const validateGroup = (group: string): boolean => {
     if (group.length > 0) {
       setGroupError(false)
@@ -91,7 +85,6 @@ const LandingForm: React.FC = () => {
       return false
     }
   }
-
   const validateForm = ({ age, group, name, pictureSequence }: FormValidatingFields): boolean => {
     const groupValid = validateGroup(group)
     const nameValid = validateName(name)
@@ -111,14 +104,25 @@ const LandingForm: React.FC = () => {
       gender: gender,
       quizSectionOrder: quizSectionOrder,
     }
-    console.log('my submit:', formData)
+
     const formIsValid = validateForm({ age, group, name, pictureSequence })
-    if (formIsValid) await navigate(`/proj2`)
+    if (formIsValid) {
+      window.sessionStorage.setItem('detailsForm', JSON.stringify(formData))
+      if (characterFirst) {
+        await navigate(`/character`)
+      } else {
+        if (quizSectionOrder == 'A') {
+          await navigate(`/quiz`)
+        } else {
+          await navigate(`/smiley-faces`)
+        }
+      }
+    }
   }
 
   return (
     <form onSubmit={handleFormSubmit}>
-      <GridRow isPadded className={styles.detailsForm}>
+      <div className={styles.detailsForm}>
         <Heading level='2'>Enter Child Details:</Heading>
         <FieldError
           id='group-error'
@@ -190,6 +194,7 @@ const LandingForm: React.FC = () => {
           <div>Gender:</div>
           <CheckboxGroup groupLabel='Gender'>
             <Radio
+              name='gender'
               onChange={(): void => {
                 setGender('F')
               }}
@@ -198,6 +203,7 @@ const LandingForm: React.FC = () => {
               value='F'
             />
             <Radio
+              name='gender'
               onChange={(): void => {
                 setGender('M')
               }}
@@ -263,6 +269,7 @@ const LandingForm: React.FC = () => {
           <div>Quiz Section Order:</div>
           <CheckboxGroup groupLabel='quiz section order'>
             <Radio
+              name='quizSectionOrder'
               onChange={(): void => {
                 setQuizSectionOrder('A')
               }}
@@ -271,6 +278,7 @@ const LandingForm: React.FC = () => {
               value='A'
             />
             <Radio
+              name='quizSectionOrder'
               onChange={(): void => {
                 setQuizSectionOrder('B')
               }}
@@ -281,8 +289,10 @@ const LandingForm: React.FC = () => {
           </CheckboxGroup>
         </label>
         <Spacing />
-        <Button aria-describedby='form-error' size='M' type='submit' buttonText='Submit' />
-      </GridRow>
+        <div className={styles.buttonWrapper}>
+          <Button aria-describedby='form-error' size='M' type='submit' buttonText='Submit' />
+        </div>
+      </div>
     </form>
   )
 }
