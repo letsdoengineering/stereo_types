@@ -15,11 +15,18 @@
 }
 
 .details-form label {
-    /*display: flex;*/
     color: var(--dark-gray);
 }
-.details-form button {
-    margin: 0 auto;
+
+.button-wrapper {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+.button-wrapper button {
+    max-width: 600px;
+    width: 100%;
     padding: 24px 60px;
 }
 

@@ -11,13 +11,7 @@ const DownloadSection: React.FC = () => {
   const today = format(new Date(), 'yyyy-MM-dd')
   return (
     <>
-      <BreadcrumbNav
-        urlList={[
-          { url: '/', label: 're-start' },
-          { url: '/proj2', label: 're-choose survey questions' },
-          { label: 'download' },
-        ]}
-      />
+      <BreadcrumbNav urlList={[{ url: '/', label: 're-start' }, { label: 'download' }]} />
       <p>{JSON.stringify(data)}</p>
       <a
         href={`data:text/json;charset=utf-8,${encodeURIComponent(JSON.stringify(data))}`}
