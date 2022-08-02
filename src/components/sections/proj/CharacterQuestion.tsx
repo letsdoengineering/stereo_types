@@ -4,20 +4,20 @@ import { navigate } from 'gatsby'
 import Button from '../../basics/Button/Button'
 import BreadcrumbNav from '../../basics/BreadcrumbNav/BreadcrumbNav'
 import getClassNames from '../../../utils/get-class-names'
-import * as styles from './survey.module.css'
+import * as characterQuestionsStyles from './CharacterQuestion.module.css'
 
 const CharacterQuestion: React.FC = () => {
   const [chosenCharacter, setChosenCharacter] = useState('')
 
   const avatarImages = [
-    { src: '../../../images/avatar/1.png', name: '1' },
-    { src: '../../../images/avatar/2.png', name: '2' },
-    { src: '../../../images/avatar/3.png', name: '3' },
-    { src: '../../../images/avatar/4.png', name: '4' },
-    { src: '../../../images/avatar/5.png', name: '5' },
-    { src: '../../../images/avatar/6.png', name: '6' },
-    { src: '../../../images/avatar/7.png', name: '7' },
-    { src: '../../../images/avatar/8.png', name: '8' },
+    { src: '../../../images/avatar/white_female_disabled.png', name: '1' },
+    { src: '../../../images/avatar/white_male_disabled.png', name: '2' },
+    { src: '../../../images/avatar/black_female.png', name: '3' },
+    { src: '../../../images/avatar/black_male.png', name: '4' },
+    { src: '../../../images/avatar/asian_female.png', name: '5' },
+    { src: '../../../images/avatar/asian_male.png', name: '6' },
+    { src: '../../../images/avatar/white_female.png', name: '7' },
+    { src: '../../../images/avatar/white_male.png', name: '8' },
   ]
 
   return (
@@ -36,9 +36,10 @@ const CharacterQuestion: React.FC = () => {
             <>
               {avatarImages.map((character) => {
                 const buttonClassNames = getClassNames({
-                  defaultClasses: [styles.buttonImage],
+                  defaultClasses: [characterQuestionsStyles.buttonImage],
                   conditionalClasses: {
-                    [`${styles.buttonImageSelected}`]: chosenCharacter == character.name,
+                    [`${characterQuestionsStyles.buttonImageSelected}`]:
+                      chosenCharacter == character.name,
                   },
                 })
                 return (
@@ -52,7 +53,7 @@ const CharacterQuestion: React.FC = () => {
                     }}
                   >
                     <img
-                      className={styles.avatarImage}
+                      className={characterQuestionsStyles.avatarImage}
                       src={`/images/avatar/${character.name}.png`}
                     />
                   </button>

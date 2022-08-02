@@ -18,6 +18,14 @@
     color: var(--dark-gray);
 }
 
+.details-form > * {
+    margin-bottom: 18px;
+}
+
+.details-form:last-child {
+    margin-bottom: 0;
+}
+
 .button-wrapper {
     display: flex;
     width: 100%;
@@ -28,12 +36,4 @@
     max-width: 600px;
     width: 100%;
     padding: 24px 60px;
-}
-
-.details-form > * {
-    margin-bottom: 18px;
-}
-
-.details-form:last-child {
-    margin-bottom: 0;
 }

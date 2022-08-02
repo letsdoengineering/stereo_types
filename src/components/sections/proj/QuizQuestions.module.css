@@ -1,0 +1,19 @@
+.button-image {
+    background-color: transparent;
+    margin: 16px;
+    cursor: pointer;
+    padding: 0;
+}
+
+.button-image:focus {
+    outline:  deeppink solid 5px;
+}
+
+.button-image-selected {
+    outline:  #26ABE2 solid 5px;
+}
+
+.avatar-image {
+    width: 250px;
+    height: auto;
+}

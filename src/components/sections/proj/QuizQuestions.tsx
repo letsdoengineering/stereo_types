@@ -5,7 +5,7 @@ import getClassNames from '../../../utils/get-class-names'
 import Button from '../../basics/Button/Button'
 import BreadcrumbNav from '../../basics/BreadcrumbNav/BreadcrumbNav'
 
-import * as styles from './survey.module.css'
+import * as quizQuestionsStyles from './QuizQuestions.module.css'
 
 const QuizQuestions: React.FC = () => {
   const [surveyQuestionResponses, setSurveyQuestionResponses] = useState({})
@@ -43,9 +43,9 @@ const QuizQuestions: React.FC = () => {
         <>
           {avatarImages.map((character) => {
             const buttonClassNames = getClassNames({
-              defaultClasses: [styles.buttonImage],
+              defaultClasses: [quizQuestionsStyles.buttonImage],
               conditionalClasses: {
-                [`${styles.buttonImageSelected}`]: chosenCharacters == character.name,
+                [`${quizQuestionsStyles.buttonImageSelected}`]: chosenCharacters == character.name,
               },
             })
             return (
@@ -58,7 +58,10 @@ const QuizQuestions: React.FC = () => {
                   setChosenCharacters(character.name)
                 }}
               >
-                <img className={styles.avatarImage} src={`/images/avatar/${character.name}.png`} />
+                <img
+                  className={quizQuestionsStyles.avatarImage}
+                  src={`/images/avatar/${character.name}.png`}
+                />
               </button>
             )
           })}
