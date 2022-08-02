@@ -8,7 +8,7 @@ import FieldError from '../../blocks/FieldError/FieldError'
 import Heading from '../../basics/Heading/Heading'
 import Radio from '../../basics/INPUTS/Radio/Radio'
 import Spacing from '../../basics/Spacing/Spacing'
-import * as styles from './landingForm.module.css'
+import * as landingFormStyles from './landingForm.module.css'
 
 type FormData = {
   age: string | number | undefined
@@ -122,7 +122,7 @@ const LandingForm: React.FC = () => {
 
   return (
     <form onSubmit={handleFormSubmit}>
-      <div className={styles.detailsForm}>
+      <div className={landingFormStyles.detailsForm}>
         <Heading level='2'>Enter Child Details:</Heading>
         <FieldError
           id='group-error'
@@ -289,7 +289,7 @@ const LandingForm: React.FC = () => {
           </CheckboxGroup>
         </label>
         <Spacing />
-        <div className={styles.buttonWrapper}>
+        <div className={landingFormStyles.buttonWrapper}>
           <Button aria-describedby='form-error' size='M' type='submit' buttonText='Submit' />
         </div>
       </div>
