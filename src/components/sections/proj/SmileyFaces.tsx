@@ -6,7 +6,7 @@ import BreadcrumbNav from '../../basics/BreadcrumbNav/BreadcrumbNav'
 import Image from '../../basics/Image/Image'
 import Text from '../../basics/Text/Text'
 import getClassNames from '../../../utils/get-class-names'
-import * as styles from './survey.module.css'
+import * as smileyFacesStyles from './SmileyFaces.module.css'
 
 const SmileyFaces: React.FC = () => {
   const [surveyQuestionResponses, setSurveyQuestionResponses] = useState({})
@@ -41,15 +41,15 @@ const SmileyFaces: React.FC = () => {
             How likely is this person to be an Engineer?
           </Text>
           <Image
-            className={styles.personSceneImage}
+            className={smileyFacesStyles.personSceneImage}
             alt={'Image of person 1'}
             src={`/images/questions/1.png`}
           />
           {smileyFaceImages.map((face) => {
             const buttonClassNames = getClassNames({
-              defaultClasses: [styles.buttonImage],
+              defaultClasses: [smileyFacesStyles.buttonImage],
               conditionalClasses: {
-                [`${styles.buttonImageSelected}`]: chosenSmiley == face.name,
+                [`${smileyFacesStyles.buttonImageSelected}`]: chosenSmiley == face.name,
               },
             })
             return (
@@ -62,7 +62,10 @@ const SmileyFaces: React.FC = () => {
                   setChosenSmiley(face.name)
                 }}
               >
-                <img className={styles.smileyImage} src={`/images/smileys/${face.name}.png`} />
+                <img
+                  className={smileyFacesStyles.smileyImage}
+                  src={`/images/smileys/${face.name}.png`}
+                />
               </button>
             )
           })}
