@@ -11,14 +11,16 @@ const DownloadSection: React.FC = () => {
   const today = format(new Date(), 'yyyy-MM-dd')
   return (
     <>
-      <BreadcrumbNav urlList={[{ url: '/', label: 're-start' }, { label: 'download' }]} />
+      <BreadcrumbNav urlList={[{ url: '/', label: 'RE-START' }, { label: 'Download' }]} />
       <p>{JSON.stringify(data)}</p>
-      <a
-        href={`data:text/json;charset=utf-8,${encodeURIComponent(JSON.stringify(data))}`}
-        download={`${fileName}.csv`}
-      >
-        {`DOWNLOAD data: "${fileName}-${today}.csv"`}
-      </a>
+      <p>
+        <a
+          href={`data:text/json;charset=utf-8,${encodeURIComponent(JSON.stringify(data))}`}
+          download={`${fileName}.csv`}
+        >
+          {`DOWNLOAD data: "${fileName}-${today}.csv"`}
+        </a>
+      </p>
     </>
   )
 }

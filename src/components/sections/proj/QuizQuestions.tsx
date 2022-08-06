@@ -1,51 +1,108 @@
-import React, { useState } from 'react'
+import React, { FormEvent, useEffect, useState } from 'react'
 import { navigate } from 'gatsby'
 
 import getClassNames from '../../../utils/get-class-names'
 import Button from '../../basics/Button/Button'
+import Text from '../../basics/Text/Text'
 import BreadcrumbNav from '../../basics/BreadcrumbNav/BreadcrumbNav'
 
 import * as quizQuestionsStyles from './QuizQuestions.module.css'
 
+const defaultCharacterButtons = {
+  1: false,
+  2: false,
+  3: false,
+  4: false,
+  5: false,
+  6: false,
+  7: false,
+  8: false,
+}
+
+const questions = {
+  1: 'Who do you feel would... leave lego on the floor at bed time?',
+  2: 'Who do you feel would... share their sweeties?',
+  3: 'Who do you feel would... help a granny across the road?',
+  4: 'Who do you feel would... pretend the smell was not their fart?',
+  5: 'Who do you feel would... eat all the cake without sharing?',
+  6: 'Who do you feel would... be able to make a paper plane?',
+  7: 'Who do you feel would... eat marmite?',
+  8: 'Who do you feel would... snore in their sleep?',
+}
 const QuizQuestions: React.FC = () => {
-  const [surveyQuestionResponses, setSurveyQuestionResponses] = useState({})
-  const [chosenCharacters, setChosenCharacters] = useState('')
-  const [questionNumber, setQuestionNumber] = useState(1)
+  const [quizQuestionResponses, setQuizQuestionResponses] = useState({})
+  const [chosenCharacters, setChosenCharacters] = useState(defaultCharacterButtons)
+  const [questionNumber, setQuestionNumber] = useState<1 | 2 | 3 | 4 | 5 | 6 | 7 | 8>(1)
+  const [characterChoiceLast, setCharacterChoiceLast] = useState(false)
+  const [quizBeforeSmileyFaces, setQuizBeforeSmileyFaces] = useState(false)
+
+  useEffect(() => {
+    const detailsFormString = window.sessionStorage.getItem('detailsForm')
+    const detailsForm = detailsFormString ? JSON.parse(detailsFormString) : null
+    if (detailsForm?.characterChoiceLast) {
+      setCharacterChoiceLast(detailsForm.characterChoiceLast)
+    }
+    if (detailsForm?.quizBeforeSmileyFaces) {
+      setQuizBeforeSmileyFaces(detailsForm.quizBeforeSmileyFaces)
+    }
+  }, [])
 
   const avatarImages = [
-    { src: '../../../images/avatar/1.png', name: '1' },
-    { src: '../../../images/avatar/2.png', name: '2' },
-    { src: '../../../images/avatar/3.png', name: '3' },
-    { src: '../../../images/avatar/4.png', name: '4' },
-    { src: '../../../images/avatar/5.png', name: '5' },
-    { src: '../../../images/avatar/6.png', name: '6' },
-    { src: '../../../images/avatar/7.png', name: '7' },
-    { src: '../../../images/avatar/8.png', name: '8' },
+    { src: '../../../images/avatar/white_female_disabled.png', name: 'white_female_disabled' },
+    { src: '../../../images/avatar/white_male_disabled.png', name: 'white_male_disabled' },
+    { src: '../../../images/avatar/black_female.png', name: 'black_female' },
+    { src: '../../../images/avatar/black_male.png', name: 'black_male' },
+    { src: '../../../images/avatar/asian_female.png', name: 'asian_female' },
+    { src: '../../../images/avatar/asian_male.png', name: 'asian_male' },
+    { src: '../../../images/avatar/white_female.png', name: 'white_female' },
+    { src: '../../../images/avatar/white_male.png', name: 'white_male' },
   ]
 
-  const quizQuestion = (questionNumber: number): JSX.Element => (
-    <form
-      onSubmit={async (formData): Promise<void> => {
-        console.log('submitted:', formData)
-        console.log('previous responses:', surveyQuestionResponses)
-        setSurveyQuestionResponses({ ...surveyQuestionResponses, ...formData })
-        setQuestionNumber(questionNumber + 1)
-        if (questionNumber == 3) {
-          window.sessionStorage.setItem('quizQuestions', JSON.stringify(surveyQuestionResponses))
+  const handleFormSubmit = async (event: FormEvent): Promise<void> => {
+    event.preventDefault()
+    const latestAnswer = {
+      [questionNumber]: chosenCharacters,
+    }
+    console.log('Submitted Response:', latestAnswer)
+    console.log('Full question questions so far:', { ...quizQuestionResponses, ...latestAnswer })
+    setQuizQuestionResponses({ ...quizQuestionResponses, ...latestAnswer })
+    setChosenCharacters(defaultCharacterButtons)
+    if (questionNumber == 8) {
+      window.sessionStorage.setItem(
+        'quizQuestions',
+        JSON.stringify({ ...quizQuestionResponses, ...latestAnswer })
+      )
+      if (quizBeforeSmileyFaces) {
+        await navigate('/smiley-faces')
+      } else {
+        if (characterChoiceLast) {
+          await navigate(`/character`)
+        } else {
           await navigate(`/download`)
         }
-      }}
-    >
+      }
+    } else {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      setQuestionNumber(questionNumber + 1)
+    }
+  }
+
+  const quizQuestion = (questionNumber: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8): JSX.Element => (
+    <form onSubmit={handleFormSubmit}>
       <fieldset>
-        <legend className='visually-hidden'>
-          Choose some characters (question - {questionNumber})
-        </legend>
+        <legend>Quiz Question {questionNumber}</legend>
+        <p>
+          <Text size='L'>{questions[questionNumber]}</Text>
+        </p>
         <>
-          {avatarImages.map((character) => {
+          {avatarImages.map((character, index) => {
             const buttonClassNames = getClassNames({
               defaultClasses: [quizQuestionsStyles.buttonImage],
               conditionalClasses: {
-                [`${quizQuestionsStyles.buttonImageSelected}`]: chosenCharacters == character.name,
+                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                // @ts-ignore
+                [`${quizQuestionsStyles.buttonImageSelected}`]: chosenCharacters[`${index + 1}`],
               },
             })
             return (
@@ -54,8 +111,10 @@ const QuizQuestions: React.FC = () => {
                 type='button'
                 key={character.name}
                 onClick={(): void => {
-                  console.log('Clicked with character:', character.name)
-                  setChosenCharacters(character.name)
+                  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                  // @ts-ignore
+                  const previous = chosenCharacters[`${index + 1}`]
+                  setChosenCharacters({ ...chosenCharacters, [`${index + 1}`]: !previous })
                 }}
               >
                 <img
@@ -68,12 +127,11 @@ const QuizQuestions: React.FC = () => {
         </>
       </fieldset>
       <Button
-        disabled={chosenCharacters == ''}
         type='submit'
-        buttonText='Submit Chosen Character'
+        buttonText={`Submit Question ${questionNumber} answer`}
         fillSpace={false}
       />
-      <p>Chosen characters - {chosenCharacters}</p>
+      <p>Chosen Characters - {JSON.stringify(chosenCharacters)}</p>
     </form>
   )
 

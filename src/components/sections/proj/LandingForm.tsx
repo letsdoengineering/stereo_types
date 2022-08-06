@@ -15,9 +15,9 @@ type FormData = {
   group: string
   name: string
   pictureSequence: string
-  characterFirst: boolean
+  characterChoiceLast: boolean
   gender: 'M' | 'F'
-  quizSectionOrder: 'A' | 'B'
+  quizBeforeSmileyFaces: boolean
 }
 
 type FormValidatingFields = {
@@ -26,6 +26,7 @@ type FormValidatingFields = {
   name: string
   pictureSequence: string
 }
+
 const LandingForm: React.FC = () => {
   const [nameError, setNameError] = useState(false)
   const [groupError, setGroupError] = useState(false)
@@ -36,8 +37,8 @@ const LandingForm: React.FC = () => {
   const [name, setName] = useState('')
   const [group, setGroup] = useState('')
   const [pictureSequence, setPictureSequence] = useState('')
-  const [characterFirst, setCharacterFirst] = useState(false)
-  const [quizSectionOrder, setQuizSectionOrder] = useState<'A' | 'B'>('A')
+  const [characterChoiceLast, setCharacterChoiceLast] = useState(false)
+  const [quizBeforeSmileyFaces, setQuizBeforeSmileyFaces] = useState(true)
 
   useEffect(() => {
     const detailsFormString = window.sessionStorage.getItem('detailsForm')
@@ -100,18 +101,18 @@ const LandingForm: React.FC = () => {
       group: group,
       name: name,
       pictureSequence: pictureSequence,
-      characterFirst: characterFirst,
+      characterChoiceLast: characterChoiceLast,
       gender: gender,
-      quizSectionOrder: quizSectionOrder,
+      quizBeforeSmileyFaces: quizBeforeSmileyFaces,
     }
 
     const formIsValid = validateForm({ age, group, name, pictureSequence })
     if (formIsValid) {
       window.sessionStorage.setItem('detailsForm', JSON.stringify(formData))
-      if (characterFirst) {
+      if (!characterChoiceLast) {
         await navigate(`/character`)
       } else {
-        if (quizSectionOrder == 'A') {
+        if (quizBeforeSmileyFaces) {
           await navigate(`/quiz`)
         } else {
           await navigate(`/smiley-faces`)
@@ -178,7 +179,7 @@ const LandingForm: React.FC = () => {
             <input
               aria-describedby='age-error'
               autoComplete='off'
-              type='text'
+              type='number'
               name='ageInput'
               value={age}
               onBlur={(event): void => {
@@ -217,13 +218,13 @@ const LandingForm: React.FC = () => {
           <div>Character Choice Timing:</div>
           <CheckboxGroup groupLabel='character choice location'>
             <Checkbox
-              id='character-first-input'
-              name='characterFirstInput'
-              isChecked={characterFirst}
-              value={`${characterFirst}`}
+              id='character-last-input'
+              name='characterChoiceLastInput'
+              isChecked={characterChoiceLast}
+              value={`${characterChoiceLast}`}
               text='Ask character choice last?'
               onChange={(): void => {
-                setCharacterFirst(!characterFirst)
+                setCharacterChoiceLast(!characterChoiceLast)
               }}
             />
           </CheckboxGroup>
@@ -267,23 +268,23 @@ const LandingForm: React.FC = () => {
         </FieldError>
         <label>
           <div>Quiz Section Order:</div>
-          <CheckboxGroup groupLabel='quiz section order'>
+          <CheckboxGroup groupLabel='Quiz section before/after smilies questions'>
             <Radio
-              name='quizSectionOrder'
+              name='quizBeforeSmileyFaces'
               onChange={(): void => {
-                setQuizSectionOrder('A')
+                setQuizBeforeSmileyFaces(true)
               }}
-              isChecked={quizSectionOrder === 'A'}
-              label='A sequence'
+              isChecked={quizBeforeSmileyFaces}
+              label='Before'
               value='A'
             />
             <Radio
-              name='quizSectionOrder'
+              name='quizBeforeSmileyFaces'
               onChange={(): void => {
-                setQuizSectionOrder('B')
+                setQuizBeforeSmileyFaces(false)
               }}
-              isChecked={quizSectionOrder === 'B'}
-              label='B sequence'
+              isChecked={!quizBeforeSmileyFaces}
+              label='After'
               value='B'
             />
           </CheckboxGroup>
