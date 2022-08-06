@@ -6,6 +6,7 @@ import BreadcrumbNav from '../../basics/BreadcrumbNav/BreadcrumbNav'
 import { navigate } from 'gatsby'
 
 const DownloadSection: React.FC = () => {
+  if (typeof window == 'undefined') return null
   const detailsFormString = window.sessionStorage.getItem('detailsForm')
   const quizQuestionsString = window.sessionStorage.getItem('quizQuestions')
   const smileyQuestionsString = window.sessionStorage.getItem('smileyQuestions')
