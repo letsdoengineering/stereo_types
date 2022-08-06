@@ -18,11 +18,16 @@ const SmileyFaces: React.FC = () => {
   useEffect(() => {
     const detailsFormString = window.sessionStorage.getItem('detailsForm')
     const detailsForm = detailsFormString ? JSON.parse(detailsFormString) : null
-    if (detailsForm?.characterChoiceLast) {
-      setCharacterChoiceLast(detailsForm.characterChoiceLast)
-    }
-    if (detailsForm?.quizBeforeSmileyFaces) {
-      setQuizBeforeSmileyFaces(detailsForm.quizBeforeSmileyFaces)
+
+    if (!detailsForm) {
+      navigate('/').then()
+    } else {
+      if (detailsForm.characterChoiceLast) {
+        setCharacterChoiceLast(detailsForm.characterChoiceLast)
+      }
+      if (detailsForm.quizBeforeSmileyFaces) {
+        setQuizBeforeSmileyFaces(detailsForm.quizBeforeSmileyFaces)
+      }
     }
   }, [])
 
@@ -38,16 +43,14 @@ const SmileyFaces: React.FC = () => {
     const latestAnswer = {
       [questionNumber]: chosenSmiley,
     }
-    console.log('Submitted Response:', latestAnswer)
-    console.log('Full smiley questions so far:', { ...smileyQuestionResponses, ...latestAnswer })
     setSmileyQuestionResponses({ ...smileyQuestionResponses, ...latestAnswer })
-    if (questionNumber == 8) {
+    if (questionNumber == 1) {
       window.sessionStorage.setItem(
-        'quizQuestions',
+        'smileyQuestions',
         JSON.stringify({ ...smileyQuestionResponses, ...latestAnswer })
       )
       if (!quizBeforeSmileyFaces) {
-        await navigate('/smiley-faces')
+        await navigate('/quiz')
       } else {
         if (characterChoiceLast) {
           await navigate(`/character`)
@@ -89,7 +92,6 @@ const SmileyFaces: React.FC = () => {
                 type='button'
                 key={'face-' + face.name}
                 onClick={(): void => {
-                  console.log('Question', questionNumber, ', current selection:', face.name)
                   setChosenSmiley(face.name)
                 }}
               >
