@@ -14,11 +14,16 @@ const CharacterQuestion: React.FC = () => {
   useEffect(() => {
     const detailsFormString = window.sessionStorage.getItem('detailsForm')
     const detailsForm = detailsFormString ? JSON.parse(detailsFormString) : null
-    if (detailsForm?.characterChoiceLast) {
-      setCharacterChoiceLast(detailsForm.characterChoiceLast)
-    }
-    if (detailsForm?.quizBeforeSmileyFaces) {
-      setQuizBeforeSmileyFaces(detailsForm.quizBeforeSmileyFaces)
+
+    if (!detailsForm) {
+      navigate('/').then()
+    } else {
+      if (detailsForm.characterChoiceLast) {
+        setCharacterChoiceLast(detailsForm.characterChoiceLast)
+      }
+      if (detailsForm.quizBeforeSmileyFaces) {
+        setQuizBeforeSmileyFaces(detailsForm.quizBeforeSmileyFaces)
+      }
     }
   }, [])
 
@@ -35,7 +40,7 @@ const CharacterQuestion: React.FC = () => {
 
   const handleFormSubmit = async (event: FormEvent): Promise<void> => {
     event.preventDefault()
-    window.sessionStorage.setItem('character', chosenCharacter)
+    window.sessionStorage.setItem('character', JSON.stringify({ character: chosenCharacter }))
     if (characterChoiceLast) {
       await navigate(`/download`)
     } else {
@@ -68,7 +73,6 @@ const CharacterQuestion: React.FC = () => {
                   type='button'
                   key={character.name}
                   onClick={(): void => {
-                    console.log('Clicked with character:', character.name)
                     setChosenCharacter(character.name)
                   }}
                 >

@@ -39,11 +39,16 @@ const QuizQuestions: React.FC = () => {
   useEffect(() => {
     const detailsFormString = window.sessionStorage.getItem('detailsForm')
     const detailsForm = detailsFormString ? JSON.parse(detailsFormString) : null
-    if (detailsForm?.characterChoiceLast) {
-      setCharacterChoiceLast(detailsForm.characterChoiceLast)
-    }
-    if (detailsForm?.quizBeforeSmileyFaces) {
-      setQuizBeforeSmileyFaces(detailsForm.quizBeforeSmileyFaces)
+
+    if (!detailsForm) {
+      navigate('/').then()
+    } else {
+      if (detailsForm.characterChoiceLast) {
+        setCharacterChoiceLast(detailsForm.characterChoiceLast)
+      }
+      if (detailsForm.quizBeforeSmileyFaces) {
+        setQuizBeforeSmileyFaces(detailsForm.quizBeforeSmileyFaces)
+      }
     }
   }, [])
 
@@ -63,11 +68,9 @@ const QuizQuestions: React.FC = () => {
     const latestAnswer = {
       [questionNumber]: chosenCharacters,
     }
-    console.log('Submitted Response:', latestAnswer)
-    console.log('Full question questions so far:', { ...quizQuestionResponses, ...latestAnswer })
     setQuizQuestionResponses({ ...quizQuestionResponses, ...latestAnswer })
     setChosenCharacters(defaultCharacterButtons)
-    if (questionNumber == 8) {
+    if (questionNumber == 1) {
       window.sessionStorage.setItem(
         'quizQuestions',
         JSON.stringify({ ...quizQuestionResponses, ...latestAnswer })
