@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { FormEvent, useEffect, useState } from 'react'
 import { navigate } from 'gatsby'
 
 import Button from '../../basics/Button/Button'
@@ -9,9 +9,22 @@ import getClassNames from '../../../utils/get-class-names'
 import * as smileyFacesStyles from './SmileyFaces.module.css'
 
 const SmileyFaces: React.FC = () => {
-  const [surveyQuestionResponses, setSurveyQuestionResponses] = useState({})
+  const [smileyQuestionResponses, setSmileyQuestionResponses] = useState({})
   const [chosenSmiley, setChosenSmiley] = useState('')
   const [questionNumber, setQuestionNumber] = useState(1)
+  const [characterChoiceLast, setCharacterChoiceLast] = useState(false)
+  const [quizBeforeSmileyFaces, setQuizBeforeSmileyFaces] = useState(false)
+
+  useEffect(() => {
+    const detailsFormString = window.sessionStorage.getItem('detailsForm')
+    const detailsForm = detailsFormString ? JSON.parse(detailsFormString) : null
+    if (detailsForm?.characterChoiceLast) {
+      setCharacterChoiceLast(detailsForm.characterChoiceLast)
+    }
+    if (detailsForm?.quizBeforeSmileyFaces) {
+      setQuizBeforeSmileyFaces(detailsForm.quizBeforeSmileyFaces)
+    }
+  }, [])
 
   const smileyFaceImages = [
     { name: '5' },
@@ -20,20 +33,38 @@ const SmileyFaces: React.FC = () => {
     { name: '2' },
     { name: '1' },
   ]
-
-  const smileyQuestion = (questionNumber: number): JSX.Element => (
-    <form
-      onSubmit={async (formData): Promise<void> => {
-        console.log('submitted:', formData)
-        console.log('previous responses:', surveyQuestionResponses)
-        setSurveyQuestionResponses({ ...surveyQuestionResponses, ...formData })
-        setQuestionNumber(questionNumber + 1)
-        if (questionNumber == 3) {
-          window.sessionStorage.setItem('quizQuestions', JSON.stringify(surveyQuestionResponses))
+  const handleFormSubmit = async (event: FormEvent): Promise<void> => {
+    event.preventDefault()
+    const latestAnswer = {
+      [questionNumber]: chosenSmiley,
+    }
+    console.log('Submitted Response:', latestAnswer)
+    console.log('Full smiley questions so far:', { ...smileyQuestionResponses, ...latestAnswer })
+    setSmileyQuestionResponses({ ...smileyQuestionResponses, ...latestAnswer })
+    if (questionNumber == 8) {
+      window.sessionStorage.setItem(
+        'quizQuestions',
+        JSON.stringify({ ...smileyQuestionResponses, ...latestAnswer })
+      )
+      if (!quizBeforeSmileyFaces) {
+        await navigate('/smiley-faces')
+      } else {
+        if (characterChoiceLast) {
+          await navigate(`/character`)
+        } else {
           await navigate(`/download`)
         }
-      }}
-    >
+      }
+    } else {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      setQuestionNumber(questionNumber + 1)
+      setChosenSmiley('')
+    }
+  }
+
+  const smileyQuestion = (questionNumber: number): JSX.Element => (
+    <form onSubmit={handleFormSubmit}>
       <fieldset>
         <legend>Question {questionNumber}</legend>
         <>
@@ -58,7 +89,7 @@ const SmileyFaces: React.FC = () => {
                 type='button'
                 key={'face-' + face.name}
                 onClick={(): void => {
-                  console.log('Q1) Clicked with face:', face.name)
+                  console.log('Question', questionNumber, ', current selection:', face.name)
                   setChosenSmiley(face.name)
                 }}
               >
