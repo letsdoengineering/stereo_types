@@ -5,6 +5,7 @@ import Button from '../../basics/Button/Button'
 import BreadcrumbNav from '../../basics/BreadcrumbNav/BreadcrumbNav'
 import Text from '../../basics/Text/Text'
 import getClassNames from '../../../utils/get-class-names'
+import imageSources from './SmileyQuestionImageSequences'
 import * as smileyFacesStyles from './SmileyFaces.module.css'
 
 const SmileyFaces: React.FC = () => {
@@ -12,7 +13,7 @@ const SmileyFaces: React.FC = () => {
   const [chosenSmiley, setChosenSmiley] = useState('')
   const [questionNumber, setQuestionNumber] = useState(1)
   const [characterChoiceLast, setCharacterChoiceLast] = useState(false)
-  const [pictureSequence, setPictureSequence] = useState('')
+  const [pictureSequence, setPictureSequence] = useState(null)
   const [quizBeforeSmileyFaces, setQuizBeforeSmileyFaces] = useState(false)
 
   useEffect(() => {
@@ -68,51 +69,7 @@ const SmileyFaces: React.FC = () => {
       setChosenSmiley('')
     }
   }
-
-  const imageSources = {
-    1: {
-      backgroundSrc: '../../../images/avatar-backgrounds/civil.png',
-      avatarSrc: '../../../images/avatar/white_female_disabled.png',
-      name: 'wfd_civil',
-    },
-    2: {
-      background: '../../../images/avatar-backgrounds/civil.png',
-      avatar: '../../../images/avatar/asian_female.png',
-      name: 'aw-civil',
-    },
-    // 3: { background:  '../../../images/avatar-backgrounds/civil.png', avatar: '../../../images/avatar/asian_female.png', name: 'aw-civil'  },
-    // 4: { background: '', avatar: '' },
-    // 5: { background: '', avatar: '' },
-    // 6: { background: '', avatar: '' },
-    // 7: { background: '', avatar: '' },
-    // 8: { background: '', avatar: '' },
-    // 9: { background: '', avatar: '' },
-    // 10: { background: '', avatar: '' },
-    // 11: { background: '', avatar: '' },
-    // 12: { background: '', avatar: '' },
-    // 13: { background: '', avatar: '' },
-    // 14: { background: '', avatar: '' },
-    // 15: { background: '', avatar: '' },
-    // 16: { background: '', avatar: '' },
-    // 17: { background: '', avatar: '' },
-    // 18: { background: '', avatar: '' },
-    // 19: { background: '', avatar: '' },
-    // 20: { background: '', avatar: '' },
-    // 21: { background: '', avatar: '' },
-    // 22: { background: '', avatar: '' },
-    // 23: { background: '', avatar: '' },
-    // 24: { background: '', avatar: '' },
-    // 25: { background: '', avatar: '' },
-    // 26: { background: '', avatar: '' },
-    // 27: { background: '', avatar: '' },
-    // 28: { background: '', avatar: '' },
-    // 29: { background: '', avatar: '' },
-    // 30: { background: '', avatar: '' },
-    // 31: { background: '', avatar: '' },
-    // 32: { background: '', avatar: '' },
-    // 33: { background: '', avatar: '' },
-    // 34: { background: '', avatar: '' },
-  }
+  if (!pictureSequence) return null
 
   const smileyQuestion = (questionNumber: number): JSX.Element => (
     <form onSubmit={handleFormSubmit}>
@@ -130,14 +87,14 @@ const SmileyFaces: React.FC = () => {
               alt={`Image of background ${questionNumber}`}
               // eslint-disable-next-line @typescript-eslint/ban-ts-comment
               // @ts-ignore
-              src={imageSources[questionNumber].backgroundSrc}
+              src={imageSources[pictureSequence][questionNumber].backgroundSrc}
             />
             <img
               className={smileyFacesStyles.personBackground}
               alt={'Image of person  ${questionNumber}'}
               // eslint-disable-next-line @typescript-eslint/ban-ts-comment
               // @ts-ignore
-              src={imageSources[questionNumber].avatarSrc}
+              src={imageSources[pictureSequence][questionNumber].avatarSrc}
             />
           </div>
           {smileyFaceImages.map((face) => {

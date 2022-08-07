@@ -1,0 +1,13 @@
+.content {
+    margin: 12px;
+    text-align: left;
+}
+
+.download-link {
+    margin: 16px 0;
+    color: #157199;
+}
+
+.download-link-wrapper a {
+    text-decoration: none;
+}
