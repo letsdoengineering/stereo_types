@@ -2,6 +2,7 @@
     background-color: transparent;
     margin: 16px;
     cursor: pointer;
+    border: 1px solid darkgray;
     padding: 0;
 }
 
@@ -18,7 +19,25 @@
     height: auto;
 }
 
-.person-scene-image {
-    display: block;
+.image-wrapper {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 400px;
+    height: 400px;
     margin: auto;
+}
+
+.person-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 400px;
+}
+
+.person-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 400px;
 }

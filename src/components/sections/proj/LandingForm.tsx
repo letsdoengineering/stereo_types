@@ -268,7 +268,7 @@ const LandingForm: React.FC = () => {
         </FieldError>
         <label>
           <div>Quiz Section Order:</div>
-          <CheckboxGroup groupLabel='Quiz section before/after smilies questions'>
+          <CheckboxGroup groupLabel='Quiz section before/after smileys questions'>
             <Radio
               name='quizBeforeSmileyFaces'
               onChange={(): void => {
