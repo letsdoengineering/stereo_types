@@ -84,14 +84,16 @@ const CharacterQuestion: React.FC = () => {
               )
             })}
           </>
+          <div>
+            <Button
+              disabled={chosenCharacter == ''}
+              type='submit'
+              buttonText='Submit Chosen Character'
+              fillSpace={false}
+            />
+          </div>
         </fieldset>
-        <Button
-          disabled={chosenCharacter == ''}
-          type='submit'
-          buttonText='Submit Chosen Character'
-          fillSpace={false}
-        />
-        <p>Chosen character - {chosenCharacter}</p> {/* TODO: REMOVE THIS */}
+        {/*<p>Chosen character - {chosenCharacter}</p> /!* TODO: REMOVE THIS *!/*/}
       </form>
     </>
   )

@@ -1,6 +1,6 @@
 .button-image {
     background-color: transparent;
-    margin: 16px;
+    margin: 12px;
     cursor: pointer;
     padding: 0;
 }
@@ -14,6 +14,5 @@
 }
 
 .avatar-image {
-    width: 250px;
-    height: auto;
+    width: 200px;
 }

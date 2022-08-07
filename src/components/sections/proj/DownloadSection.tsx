@@ -21,8 +21,8 @@ const DownloadSection: React.FC = () => {
   if (details) {
     const data = { details, character, smileyQuestions, quizQuestions }
     console.log('DATA from session storage:', data)
-    const childName = data.details.name.toLower()
-    const groupName = data.details.group.toLower()
+    const childName = data.details.name
+    const groupName = data.details.group
     const todaysDate = format(new Date(), 'yyyy-MM-dd')
     const fileName = todaysDate + '_' + groupName + '_' + childName
     return (

@@ -3,7 +3,6 @@ import { navigate } from 'gatsby'
 
 import getClassNames from '../../../utils/get-class-names'
 import Button from '../../basics/Button/Button'
-import Text from '../../basics/Text/Text'
 import BreadcrumbNav from '../../basics/BreadcrumbNav/BreadcrumbNav'
 
 import * as quizQuestionsStyles from './QuizQuestions.module.css'
@@ -19,16 +18,6 @@ const defaultCharacterButtons = {
   8: false,
 }
 
-const questions = {
-  1: 'Who do you feel would... leave lego on the floor at bed time?',
-  2: 'Who do you feel would... share their sweeties?',
-  3: 'Who do you feel would... help a granny across the road?',
-  4: 'Who do you feel would... pretend the smell was not their fart?',
-  5: 'Who do you feel would... eat all the cake without sharing?',
-  6: 'Who do you feel would... be able to make a paper plane?',
-  7: 'Who do you feel would... eat marmite?',
-  8: 'Who do you feel would... snore in their sleep?',
-}
 const QuizQuestions: React.FC = () => {
   const [quizQuestionResponses, setQuizQuestionResponses] = useState({})
   const [chosenCharacters, setChosenCharacters] = useState(defaultCharacterButtons)
@@ -95,9 +84,6 @@ const QuizQuestions: React.FC = () => {
     <form onSubmit={handleFormSubmit}>
       <fieldset>
         <legend>Quiz Question {questionNumber}</legend>
-        <p>
-          <Text size='L'>{questions[questionNumber]}</Text>
-        </p>
         <>
           {avatarImages.map((character, index) => {
             const buttonClassNames = getClassNames({
@@ -128,13 +114,15 @@ const QuizQuestions: React.FC = () => {
             )
           })}
         </>
+        <div>
+          <Button
+            type='submit'
+            buttonText={`Submit Question ${questionNumber} answer`}
+            fillSpace={false}
+          />
+        </div>
       </fieldset>
-      <Button
-        type='submit'
-        buttonText={`Submit Question ${questionNumber} answer`}
-        fillSpace={false}
-      />
-      <p>Chosen Characters - {JSON.stringify(chosenCharacters)}</p>
+      {/*<p>Chosen Characters - {JSON.stringify(chosenCharacters)}</p>*/}
     </form>
   )
 
