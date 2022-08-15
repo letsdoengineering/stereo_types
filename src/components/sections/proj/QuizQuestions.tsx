@@ -59,7 +59,7 @@ const QuizQuestions: React.FC = () => {
     }
     setQuizQuestionResponses({ ...quizQuestionResponses, ...latestAnswer })
     setChosenCharacters(defaultCharacterButtons)
-    if (questionNumber == 1) {
+    if (questionNumber == 8) {
       window.sessionStorage.setItem(
         'quizQuestions',
         JSON.stringify({ ...quizQuestionResponses, ...latestAnswer })

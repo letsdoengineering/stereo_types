@@ -48,7 +48,7 @@ const SmileyFaces: React.FC = () => {
       [questionNumber]: chosenSmiley,
     }
     setSmileyQuestionResponses({ ...smileyQuestionResponses, ...latestAnswer })
-    if (questionNumber == 1) {
+    if (questionNumber == 8) {
       window.sessionStorage.setItem(
         'smileyQuestions',
         JSON.stringify({ ...smileyQuestionResponses, ...latestAnswer })

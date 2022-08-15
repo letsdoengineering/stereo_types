@@ -57,27 +57,22 @@ const DownloadSection: React.FC = () => {
   }
   if (details) {
     const data = { details, character, smileyQuestions, quizQuestions }
-    console.log('DATA from session storage:', data)
+
     const childName = data.details.name
     const groupName = data.details.group
     const todaysDate = format(new Date(), 'yyyy-MM-dd')
     const fileName = todaysDate + '_' + groupName + '_' + childName
     const flatData = flattenObject(data)
 
-    console.log('Data flattened:', flatData)
     const csv = convertToCSV([flatData])
-    console.log('And converted to csv:', csv)
     return (
       <>
         <BreadcrumbNav urlList={[{ url: '/', label: 'RE-START' }, { label: 'Download' }]} />
         <div className={downloadStyles.content}>
           <Text>Please remember to download the data by clicking this link:</Text>
           <div className={downloadStyles.downloadLinkWrapper}>
-            <a
-              href={`data:text/json;charset=utf-8,${encodeURIComponent(JSON.stringify(data))}`}
-              download={`${fileName}.csv`}
-            >
-              <Text size='XL' className={downloadStyles.downloadLink}>{`${fileName}.json`}</Text>
+            <a href={`data:text/json;charset=utf-8,${csv}`} download={`${fileName}.csv`}>
+              <Text size='XL' className={downloadStyles.downloadLink}>{`${fileName}.csv`}</Text>
             </a>
           </div>
         </div>
