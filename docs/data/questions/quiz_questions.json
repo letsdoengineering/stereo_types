@@ -1,7 +1,0 @@
-export default = {
-  "quizQuestions": [
-  1: 'a quiestion',
-  2: 'an other quiestion',
-  3: 'yet antoerh quiestion',
-    ],
-}
