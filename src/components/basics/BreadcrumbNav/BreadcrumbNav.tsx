@@ -2,7 +2,7 @@ import React from 'react'
 import Text from '../../basics/Text/Text'
 import ListItem from '../../basics/List/ListItem'
 import List from '../../basics/List/List'
-import * as breadcrumbNavStyles from './BreadcrumbNav.module.css'
+import breadcrumbNavStyles from './BreadcrumbNav.module.css'
 
 type Breadcrumb = {
   url?: string

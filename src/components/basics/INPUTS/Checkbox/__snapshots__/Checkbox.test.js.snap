@@ -15,9 +15,7 @@ exports[`Checkbox should render correctly 1`] = `
     className="checkmark"
   />
   <span
-    className="sizeS weightNormal textGray"
-  >
-    text shown as label
-  </span>
+    className="label"
+  />
 </label>
 `;

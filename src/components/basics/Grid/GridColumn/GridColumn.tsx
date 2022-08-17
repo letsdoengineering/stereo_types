@@ -1,6 +1,6 @@
 import React from 'react'
 import getClassNames from '../../../../utils/get-class-names'
-import * as gridColumnStyles from './GridColumn.module.css'
+import gridColumnStyles from './GridColumn.module.css'
 
 type GridColumnProps = React.HTMLAttributes<HTMLDivElement> & {
   /** optional: specify how much space in a row a column occupies in increments of 1/12ths */

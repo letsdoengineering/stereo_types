@@ -1,6 +1,6 @@
 import React from 'react'
 import getClassNames from '../../../../utils/get-class-names'
-import * as gridRowStyles from './GridRow.module.css'
+import gridRowStyles from './GridRow.module.css'
 
 type GridRowProps = React.HTMLAttributes<HTMLDivElement> & {
   /** optional: class-names */

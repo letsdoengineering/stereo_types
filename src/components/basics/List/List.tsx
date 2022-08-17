@@ -1,6 +1,6 @@
 import React from 'react'
 import getClassNames from '../../../utils/get-class-names'
-import * as listStyles from './List.module.css'
+import listStyles from './List.module.css'
 
 export type ListProps = {
   /** optional: default to ul if not passed */
