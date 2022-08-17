@@ -1,7 +1,7 @@
 import React from 'react'
 import getClassNames from '../../../../utils/get-class-names'
 import Text from '../../../basics/Text/Text'
-import * as tabButtonStyles from './TabButton.module.css'
+import tabButtonStyles from './TabButton.module.css'
 
 type TabButtonProps = {
   isHighlighted?: boolean

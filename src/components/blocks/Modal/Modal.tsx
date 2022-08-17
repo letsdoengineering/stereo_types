@@ -5,7 +5,7 @@ import Card from '../../blocks/Card/Card'
 import IconButton from '../../basics/IconButton/IconButton'
 import * as self from './Modal'
 
-import * as modalStyles from './Modal.module.css'
+import modalStyles from './Modal.module.css'
 
 export type ModalProps = {
   /** boolean for setting modal open */

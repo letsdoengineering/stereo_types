@@ -1,5 +1,5 @@
 import React from 'react'
-import * as linkStyles from './Link.module.css'
+import linkStyles from './Link.module.css'
 import getClassNames from '../../../utils/get-class-names'
 
 type LinkProps = {

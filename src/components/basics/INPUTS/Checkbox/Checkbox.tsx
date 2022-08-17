@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from 'react'
-import * as checkboxStyles from './Checkbox.module.css'
+import checkboxStyles from './Checkbox.module.css'
 import getClassNames from '../../../../utils/get-class-names'
 
 export type CheckboxProps = React.ComponentProps<'input'> &

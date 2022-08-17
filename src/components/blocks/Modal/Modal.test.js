@@ -129,6 +129,7 @@ describe('Modal', () => {
         <button>outside after</button>
       </div>
     )
+    // eslint-disable-next-line testing-library/no-node-access
     const closeButton = screen.getByText('close modal').closest('button')
     closeButton.focus()
     expect(closeButton).toHaveFocus()
@@ -154,6 +155,7 @@ describe('Modal', () => {
         <button>outside after</button>
       </div>
     )
+    // eslint-disable-next-line testing-library/no-node-access
     const closeButton = screen.getByText('close modal').closest('button')
     closeButton.focus()
     expect(closeButton).toHaveFocus()

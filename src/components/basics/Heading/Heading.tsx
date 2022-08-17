@@ -1,6 +1,6 @@
 import React from 'react'
 import getClassNames from '../../../utils/get-class-names'
-import * as headingStyles from './Heading.module.css'
+import headingStyles from './Heading.module.css'
 
 // TODO: Find appropriate interface to extend for h1-h6
 type HeadingProps = {

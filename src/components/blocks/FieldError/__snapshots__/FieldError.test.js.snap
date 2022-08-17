@@ -1,25 +1,18 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`FieldError has not changed the JSX layout of the page from previous snapshot 1`] = `
-<div>
-  <div
+<div
+  className="root"
+>
+  <span
     className="childrenWrapper"
   >
     I am a Child Component
-  </div>
-  <div
-    className="error"
+  </span>
+  <span
+    className="sizeS weightBold textGray errorMessage"
   >
-    <span
-      aria-hidden="true"
-      className="fas fa-exclamation-triangle iconSizeL iconColorRed icon"
-    />
-    <span
-      className="sizeS weightBold textGray"
-      id="iamsuprisinglyunique-error-message"
-    >
-      I am a error message
-    </span>
-  </div>
+    I am a error message
+  </span>
 </div>
 `;

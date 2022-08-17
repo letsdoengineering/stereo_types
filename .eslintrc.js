@@ -5,7 +5,13 @@ https://eslint.org/docs/user-guide/configuring/
 
 module.exports = {
   parser: '@typescript-eslint/parser', // specify the parser you wish to use for transpilation
-  extends: ['plugin:react/recommended', 'plugin:@typescript-eslint/recommended', 'prettier'], // specify any configs from other libs that you wish to extend into this config
+  extends: [
+    'react-app',
+    'react-app/jest',
+    'plugin:react/recommended',
+    'plugin:@typescript-eslint/recommended',
+    'prettier',
+  ], // specify any configs from other libs that you wish to extend into this config
   settings: {
     react: {
       version: 'detect',

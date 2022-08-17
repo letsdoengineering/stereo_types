@@ -2,7 +2,8 @@
 
 exports[`Button has not changed the JSX layout of the page from previous snapshot 1`] = `
 <button
-  className="button sizeS buttonFillSpace"
+  className="button sizeS"
+  disabled={false}
   type="submit"
 >
   some button

@@ -12,8 +12,8 @@ describe('Heading', () => {
 
       await waitFor(() => {
         expect(header).toBeInTheDocument()
-        expect(header.nodeName).toBe('H1')
       })
+      expect(header.nodeName).toBe('H1')
     })
 
     it('renders a h3 element if level prop is specified as 3', async () => {
@@ -22,8 +22,9 @@ describe('Heading', () => {
 
       await waitFor(() => {
         expect(header).toBeInTheDocument()
-        expect(header.nodeName).toBe('H3')
       })
+
+      expect(header.nodeName).toBe('H3')
     })
   })
 

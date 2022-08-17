@@ -1,6 +1,6 @@
 import React from 'react'
 import getClassNames from '../../../utils/get-class-names'
-import * as dataListStyles from './DataList.module.css'
+import dataListStyles from './DataList.module.css'
 
 export type DataListProps = React.AllHTMLAttributes<HTMLDListElement> & {
   /** optional: class-names */

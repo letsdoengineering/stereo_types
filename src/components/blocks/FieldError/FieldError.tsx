@@ -1,7 +1,7 @@
 import React from 'react'
 import Text from '../../basics/Text/Text'
 
-import * as fieldErrorStyles from './FieldError.module.css'
+import fieldErrorStyles from './FieldError.module.css'
 
 type FieldErrorPros = {
   children: React.ReactElement
