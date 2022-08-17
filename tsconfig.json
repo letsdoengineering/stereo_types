@@ -15,5 +15,5 @@ See more: https://www.typescriptlang.org/tsconfig
     "noUnusedLocals": true // report errors on unused local variables
   },
   "include": ["src/**/*"], // point ts compiler to our src file where we only expect ts files
-  "exclude": ["node_modules","public", ".cache"] // list directories you wish to exclude from TS compilation
+  "exclude": ["node_modules","public"] // list directories you wish to exclude from TS compilation
 }

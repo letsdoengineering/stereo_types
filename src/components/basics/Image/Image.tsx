@@ -1,6 +1,6 @@
 import React from 'react'
 import getClassNames from '../../../utils/get-class-names'
-import * as imageStyles from './Image.module.css'
+import imageStyles from './Image.module.css'
 
 type ImageProps = {
   alt: string

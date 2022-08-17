@@ -1,6 +1,6 @@
 import React from 'react'
 import getClassNames from '../../../utils/get-class-names'
-import * as iconStyles from './Icon.module.css'
+import iconStyles from './Icon.module.css'
 
 export type IconProps = React.AllHTMLAttributes<HTMLSpanElement> & {
   /** string that represents a specific icon */

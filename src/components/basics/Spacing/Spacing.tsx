@@ -1,5 +1,5 @@
 import React from 'react'
-import * as spacingStyles from './Spacing.module.css'
+import spacingStyles from './Spacing.module.css'
 import getClassNames from '../../../utils/get-class-names'
 
 type SpacingProps = {

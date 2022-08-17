@@ -1,5 +1,5 @@
 import React from 'react'
-import * as styles from './ToggleSwitch.module.css'
+import toggleStyles from './ToggleSwitch.module.css'
 
 type ToggleSwitchProps = {
   /** Tell the toggle (checkbox) it's status; controlled by consumer via passing onChange function */
@@ -17,10 +17,10 @@ const ToggleSwitch: React.FC<ToggleSwitchProps> = ({
   ...rest
 }: ToggleSwitchProps) => {
   return (
-    <label className={styles.container}>
+    <label className={toggleStyles.container}>
       <span className='visually-hidden'>{label}</span>
       <input type='checkbox' checked={isChecked} onChange={onChange} {...rest} />
-      <span className={styles.slider} />
+      <span className={toggleStyles.slider} />
     </label>
   )
 }

@@ -1,6 +1,6 @@
 import React from 'react'
 import getClassNames from '../../../utils/get-class-names'
-import * as listItemStyles from './ListItem.module.css'
+import listItemStyles from './ListItem.module.css'
 
 type ListItemProps = React.AllHTMLAttributes<HTMLLIElement> & {
   /** unique key for each <li> rendered to help react track dynamically rendered contents */

@@ -2,7 +2,7 @@ import React from 'react'
 
 import getClassNames from '../../../../utils/get-class-names'
 import Text from '../../../basics/Text/Text'
-import * as checkboxGroupStyles from './CheckboxGroup.module.css'
+import checkboxGroupStyles from './CheckboxGroup.module.css'
 
 type CheckboxGroupProps = Readonly<{
   /** label must be provided for accessibility */
@@ -20,7 +20,7 @@ const CheckboxGroup: React.FC<CheckboxGroupProps> = ({
 }) => {
   const groupLabelClassName = getClassNames({
     conditionalClasses: {
-      ['visually-hidden']: !showLabel,
+      'visually-hidden': !showLabel,
     },
   })
 

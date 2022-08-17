@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import TabButton from './TabButton/TabButton'
 import GridColumn from '../../basics/Grid/GridColumn/GridColumn'
 import GridRow from '../../basics/Grid/GridRow/GridRow'
-import * as tabbedViewsStyles from './TabbedViewsStyles.module.css'
+import tabbedViewsStyles from './TabbedViewsStyles.module.css'
 import Spacing from '../../basics/Spacing/Spacing'
 
 type TabbedViewsProps = {

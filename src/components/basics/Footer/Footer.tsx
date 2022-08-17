@@ -1,6 +1,6 @@
 import React from 'react'
 import getClassNames from '../../../utils/get-class-names'
-import * as footerStyles from './Footer.module.css'
+import footerStyles from './Footer.module.css'
 
 // TODO: find appropriate interface to extend for footer props
 type FooterProps = {

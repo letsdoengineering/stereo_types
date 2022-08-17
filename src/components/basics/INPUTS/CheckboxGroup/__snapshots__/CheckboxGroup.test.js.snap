@@ -1,151 +1,135 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`CheckboxGroup should render as default expected 1`] = `
-<form>
-  <fieldset
+<fieldset
+  className="container"
+>
+  <legend
+    className="visually-hidden"
+  >
+    <span
+      className="sizeS weightNormal textGray"
+    >
+      A group of checkboxes
+    </span>
+  </legend>
+  <label
     className="container"
   >
-    <legend
-      className="visually-hidden"
-    >
-      <span
-        className="sizeS weightNormal textGray"
-      >
-        A group of checkboxes
-      </span>
-    </legend>
-    <label
-      className="container"
-    >
-      <input
-        checked={true}
-        disabled={false}
-        onChange={[Function]}
-        type="checkbox"
-        value="Cake"
-      />
-      <span
-        className="checkmark"
-      />
-      <span
-        className="sizeS weightNormal textGray"
-      >
-        Cake
-      </span>
-    </label>
-    <label
-      className="container"
-    >
-      <input
-        checked={true}
-        disabled={false}
-        onChange={[Function]}
-        type="checkbox"
-        value="Cheese"
-      />
-      <span
-        className="checkmark"
-      />
-      <span
-        className="sizeS weightNormal textGray"
-      >
-        Cheese
-      </span>
-    </label>
-    <label
-      className="container"
-    >
-      <input
-        checked={true}
-        disabled={false}
-        onChange={[Function]}
-        type="checkbox"
-        value="Potatoes"
-      />
-      <span
-        className="checkmark"
-      />
-      <span
-        className="sizeS weightNormal textGray"
-      >
-        Potatoes
-      </span>
-    </label>
-  </fieldset>
-</form>
+    <input
+      checked={true}
+      disabled={false}
+      onChange={[Function]}
+      type="checkbox"
+      value="Cake"
+    />
+    <span
+      className="checkmark"
+    />
+    <span
+      className="label"
+    />
+  </label>
+  <label
+    className="container"
+  >
+    <input
+      checked={true}
+      disabled={false}
+      onChange={[Function]}
+      type="checkbox"
+      value="Cheese"
+    />
+    <span
+      className="checkmark"
+    />
+    <span
+      className="label"
+    />
+  </label>
+  <label
+    className="container"
+  >
+    <input
+      checked={true}
+      disabled={false}
+      onChange={[Function]}
+      type="checkbox"
+      value="Potatoes"
+    />
+    <span
+      className="checkmark"
+    />
+    <span
+      className="label"
+    />
+  </label>
+</fieldset>
 `;
 
 exports[`CheckboxGroup should render as expected with showLabel=true 1`] = `
-<form>
-  <fieldset
+<fieldset
+  className="container"
+>
+  <legend
+    className=""
+  >
+    <span
+      className="sizeS weightNormal textGray"
+    >
+      A group of checkboxes
+    </span>
+  </legend>
+  <label
     className="container"
   >
-    <legend
-      className=""
-    >
-      <span
-        className="sizeS weightNormal textGray"
-      >
-        A group of checkboxes
-      </span>
-    </legend>
-    <label
-      className="container"
-    >
-      <input
-        checked={true}
-        disabled={false}
-        onChange={[Function]}
-        type="checkbox"
-        value="Cake"
-      />
-      <span
-        className="checkmark"
-      />
-      <span
-        className="sizeS weightNormal textGray"
-      >
-        Cake
-      </span>
-    </label>
-    <label
-      className="container"
-    >
-      <input
-        checked={true}
-        disabled={false}
-        onChange={[Function]}
-        type="checkbox"
-        value="Cheese"
-      />
-      <span
-        className="checkmark"
-      />
-      <span
-        className="sizeS weightNormal textGray"
-      >
-        Cheese
-      </span>
-    </label>
-    <label
-      className="container"
-    >
-      <input
-        checked={true}
-        disabled={false}
-        onChange={[Function]}
-        type="checkbox"
-        value="Potatoes"
-      />
-      <span
-        className="checkmark"
-      />
-      <span
-        className="sizeS weightNormal textGray"
-      >
-        Potatoes
-      </span>
-    </label>
-  </fieldset>
-</form>
+    <input
+      checked={true}
+      disabled={false}
+      onChange={[Function]}
+      type="checkbox"
+      value="Cake"
+    />
+    <span
+      className="checkmark"
+    />
+    <span
+      className="label"
+    />
+  </label>
+  <label
+    className="container"
+  >
+    <input
+      checked={true}
+      disabled={false}
+      onChange={[Function]}
+      type="checkbox"
+      value="Cheese"
+    />
+    <span
+      className="checkmark"
+    />
+    <span
+      className="label"
+    />
+  </label>
+  <label
+    className="container"
+  >
+    <input
+      checked={true}
+      disabled={false}
+      onChange={[Function]}
+      type="checkbox"
+      value="Potatoes"
+    />
+    <span
+      className="checkmark"
+    />
+    <span
+      className="label"
+    />
+  </label>
+</fieldset>
 `;

@@ -1,5 +1,5 @@
 import React from 'react'
-import * as textStyles from './Text.module.css'
+import textStyles from './Text.module.css'
 import getClassNames from '../../../utils/get-class-names'
 
 // TODO: find appropriate interface to extend for span, p and text

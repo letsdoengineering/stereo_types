@@ -18,19 +18,19 @@ describe('TabbedViews', () => {
     const tab2 = screen.getByText('view 2')
 
     // initial render - should default to view 1, with no others available
-    expect(screen.queryByText('some content for default view')).toBeInTheDocument()
+    expect(screen.getByText('some content for default view')).toBeInTheDocument()
     expect(screen.queryByText('some content for secondary view')).not.toBeInTheDocument()
 
     // click tab for view 2 - should display view two and no others
     userEvent.click(tab2)
 
-    expect(screen.queryByText('some content for secondary view')).toBeInTheDocument()
+    expect(screen.getByText('some content for secondary view')).toBeInTheDocument()
     expect(screen.queryByText('some content for default view')).not.toBeInTheDocument()
 
     // click tab for view 1 to return to that view - should not display any other view
     userEvent.click(tab1)
 
-    expect(screen.queryByText('some content for default view')).toBeInTheDocument()
+    expect(screen.getByText('some content for default view')).toBeInTheDocument()
     expect(screen.queryByText('some content for secondary view')).not.toBeInTheDocument()
   })
 

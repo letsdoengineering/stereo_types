@@ -22,25 +22,23 @@ exports[`Modal has not changed the JSX layout of the page from previous snapshot
   <p>
     content
   </p>
-  <span>
-    <button
-      className="button closeButton"
-      disabled={false}
-      onClick={[Function]}
-      onKeyDown={[Function]}
-      type="button"
+  <button
+    className="button closeButton"
+    disabled={false}
+    onClick={[Function]}
+    onKeyDown={[Function]}
+    type="button"
+  >
+    <span
+      aria-hidden="true"
+      className="fas fa-times iconSizeL iconColorGrey buttonIcon"
+    />
+    <span
+      className="visually-hidden"
     >
-      <span
-        aria-hidden="true"
-        className="fas fa-times iconSizeL iconColorGrey buttonIcon"
-      />
-      <span
-        className="visually-hidden"
-      >
-        close modal
-      </span>
-    </button>
-  </span>
+      close modal
+    </span>
+  </button>
   <div
     className="visually-hidden"
     id="modal-description"

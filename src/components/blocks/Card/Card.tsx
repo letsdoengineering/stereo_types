@@ -1,5 +1,5 @@
 import React, { forwardRef } from 'react'
-import * as cardStyles from './Card.module.css'
+import cardStyles from './Card.module.css'
 import getClassNames from '../../../utils/get-class-names'
 
 type CardProps = React.ComponentPropsWithRef<'div'> & {

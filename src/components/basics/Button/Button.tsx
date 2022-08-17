@@ -1,6 +1,6 @@
 import React from 'react'
 import getClassNames from '../../../utils/get-class-names'
-import * as buttonStyles from './Button.module.css'
+import buttonStyles from './Button.module.css'
 
 type ButtonProps = {
   /** disabled */

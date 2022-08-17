@@ -25,7 +25,7 @@ describe('use-local-storag', () => {
       mockStore = {}
     })
 
-    it('it should set a key on localStorage that stores an object containing the data passed in as args + an expiry value', () => {
+    it('should set a key on localStorage that stores an object containing the data passed in as args + an expiry value', () => {
       const mockData = {
         someField: 'someValue',
         someOtherField: 'someOtherValue',

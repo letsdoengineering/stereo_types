@@ -2,7 +2,7 @@ import React from 'react'
 import getClassNames from '../../../utils/get-class-names'
 
 import Icon, { IconProps } from '../Icon/Icon'
-import * as iconButtonStyles from './IconButton.module.css'
+import iconButtonStyles from './IconButton.module.css'
 
 export type IconButtonProps = IconProps &
   React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> & {

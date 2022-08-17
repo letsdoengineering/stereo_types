@@ -1,6 +1,6 @@
 import React, { forwardRef } from 'react'
 import getClassNames from '../../../utils/get-class-names'
-import * as labeledInputStyles from './LabelledInput.module.css'
+import labeledInputStyles from './LabelledInput.module.css'
 
 type LabelledInputProps = {
   htmlFor: string | undefined

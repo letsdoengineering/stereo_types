@@ -1,6 +1,6 @@
 import React, { forwardRef } from 'react'
 import getClassNames from '../../../../utils/get-class-names'
-import * as textInputStyles from './TextInput.module.css'
+import textInputStyles from './TextInput.module.css'
 
 export type TextInputProps = React.ComponentPropsWithRef<'input'> & {
   id?: string | undefined
