@@ -49,11 +49,5 @@ module.exports = {
         failOnError: false,
       },
     },
-    {
-      resolve: `gatsby-plugin-s3`,
-      options: {
-        bucketName: 'littleSurvey',
-      },
-    },
   ],
 }
