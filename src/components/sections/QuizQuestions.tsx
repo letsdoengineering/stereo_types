@@ -3,8 +3,7 @@ import React, { FormEvent, useEffect, useState } from 'react'
 import getClassNames from '../../utils/get-class-names'
 import Button from '../basics/Button/Button'
 import BreadcrumbNav from '../basics/BreadcrumbNav/BreadcrumbNav'
-
-import quizQuestionsStyles from './QuizQuestions.module.css'
+import './QuizQuestions.css'
 
 const defaultCharacterButtons = {
   1: false,
@@ -25,7 +24,7 @@ const QuizQuestions: React.FC<Props> = ({ setView }: Props) => {
   const [quizQuestionResponses, setQuizQuestionResponses] = useState({})
   const [chosenCharacters, setChosenCharacters] = useState(defaultCharacterButtons)
   const [questionNumber, setQuestionNumber] = useState<1 | 2 | 3 | 4 | 5 | 6 | 7 | 8>(1)
-  const [characterChoiceLast, setCharacterChoiceLast] = useState(false)
+  const [characterChoiceFirst, setCharacterChoiceFirst] = useState(false)
   const [quizBeforeSmileyFaces, setQuizBeforeSmileyFaces] = useState(false)
 
   useEffect(() => {
@@ -35,14 +34,14 @@ const QuizQuestions: React.FC<Props> = ({ setView }: Props) => {
     if (!detailsForm) {
       setView('landing')
     } else {
-      if (detailsForm.characterChoiceLast) {
-        setCharacterChoiceLast(detailsForm.characterChoiceLast)
+      if (detailsForm.characterChoiceFirst) {
+        setCharacterChoiceFirst(detailsForm.characterChoiceFirst)
       }
       if (detailsForm.quizBeforeSmileyFaces) {
         setQuizBeforeSmileyFaces(detailsForm.quizBeforeSmileyFaces)
       }
     }
-  }, [])
+  }, [setView])
 
   const avatarImages = [
     { src: '../../../images/avatar/white_female_disabled.png', name: 'white_female_disabled' },
@@ -70,7 +69,7 @@ const QuizQuestions: React.FC<Props> = ({ setView }: Props) => {
       if (quizBeforeSmileyFaces) {
         setView('smileyQuestions')
       } else {
-        if (characterChoiceLast) {
+        if (!characterChoiceFirst) {
           setView('characterChoice')
         } else {
           setView('downloadForm')
@@ -90,11 +89,11 @@ const QuizQuestions: React.FC<Props> = ({ setView }: Props) => {
         <>
           {avatarImages.map((character, index) => {
             const buttonClassNames = getClassNames({
-              defaultClasses: [quizQuestionsStyles.buttonImage],
+              defaultClasses: ['question_button-image'],
               conditionalClasses: {
                 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                 // @ts-ignore
-                [`${quizQuestionsStyles.buttonImageSelected}`]: chosenCharacters[`${index + 1}`],
+                'question_button-image-selected': chosenCharacters[`${index + 1}`],
               },
             })
             return (
@@ -111,7 +110,7 @@ const QuizQuestions: React.FC<Props> = ({ setView }: Props) => {
               >
                 <img
                   alt={`character ${character.name}`}
-                  className={quizQuestionsStyles.avatarImage}
+                  className='question_avatar-image'
                   src={`/images/avatar/${character.name}.png`}
                 />
               </button>

@@ -3,7 +3,7 @@ import React, { FormEvent, useEffect, useState } from 'react'
 import Button from '../basics/Button/Button'
 import BreadcrumbNav from '../basics/BreadcrumbNav/BreadcrumbNav'
 import getClassNames from '../../utils/get-class-names'
-import characterQuestionsStyles from './CharacterQuestion.module.css'
+import './CharacterQuestion.css'
 
 interface Props {
   setView(view: string): void
@@ -11,7 +11,7 @@ interface Props {
 
 const CharacterQuestion: React.FC<Props> = ({ setView }: Props) => {
   const [chosenCharacter, setChosenCharacter] = useState('')
-  const [characterChoiceLast, setCharacterChoiceLast] = useState(false)
+  const [characterChoiceFirst, setCharacterChoiceFirst] = useState(false)
   const [quizBeforeSmileyFaces, setQuizBeforeSmileyFaces] = useState(false)
 
   useEffect(() => {
@@ -21,14 +21,14 @@ const CharacterQuestion: React.FC<Props> = ({ setView }: Props) => {
     if (!detailsForm) {
       setView('landingForm')
     } else {
-      if (detailsForm.characterChoiceLast) {
-        setCharacterChoiceLast(detailsForm.characterChoiceLast)
+      if (detailsForm.characterChoiceFirst) {
+        setCharacterChoiceFirst(detailsForm.characterChoiceFirst)
       }
       if (detailsForm.quizBeforeSmileyFaces) {
         setQuizBeforeSmileyFaces(detailsForm.quizBeforeSmileyFaces)
       }
     }
-  }, [])
+  }, [setView])
 
   const avatarImages = [
     { src: '../../../images/avatar/white_female_disabled.png', name: 'white_female_disabled' },
@@ -44,7 +44,7 @@ const CharacterQuestion: React.FC<Props> = ({ setView }: Props) => {
   const handleFormSubmit = async (event: FormEvent): Promise<void> => {
     event.preventDefault()
     window.sessionStorage.setItem('character', JSON.stringify({ character: chosenCharacter }))
-    if (characterChoiceLast) {
+    if (!characterChoiceFirst) {
       setView('downloadForm')
     } else {
       if (quizBeforeSmileyFaces) {
@@ -64,10 +64,9 @@ const CharacterQuestion: React.FC<Props> = ({ setView }: Props) => {
           <>
             {avatarImages.map((character) => {
               const buttonClassNames = getClassNames({
-                defaultClasses: [characterQuestionsStyles.buttonImage],
+                defaultClasses: ['character_button-image'],
                 conditionalClasses: {
-                  [`${characterQuestionsStyles.buttonImageSelected}`]:
-                    chosenCharacter === character.name,
+                  'character_button-image-selected': chosenCharacter === character.name,
                 },
               })
               return (
@@ -81,7 +80,7 @@ const CharacterQuestion: React.FC<Props> = ({ setView }: Props) => {
                 >
                   <img
                     alt={`character ${character.name}`}
-                    className={characterQuestionsStyles.avatarImage}
+                    className='character_avatar-image'
                     src={`/images/avatar/${character.name}.png`}
                   />
                 </button>

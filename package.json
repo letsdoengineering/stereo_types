@@ -13,6 +13,11 @@
     "type-check": "tsc --noEmit --skipLibCheck",
     "commit": "cz"
   },
+  "husky": {
+    "hooks": {
+      "pre-push": "npm run lint && npm run type-check"
+    }
+  },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.3.0",
