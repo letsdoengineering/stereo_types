@@ -1,4 +1,4 @@
-.button {
+.basic_button {
     font-weight: 700;
     font-size: 1rem;
     background-color: var(--default-blue);
@@ -6,37 +6,37 @@
     border: 3px solid var(--default-blue);
 }
 
-.button-fill-space {
+.basic_button_fill-space {
     height: 100%;
     width: 100%;
     font-size: 1.2rem;
 }
 
-.button-secondary {
+.basic_button_secondary {
     background: transparent;
     color: var(--default-blue);
 }
 
-.button:hover {
+.basic_button:hover {
     cursor: pointer;
     color: white;
     background:  var(--light-blue);
     border: 3px solid var(--light-blue);
 }
 
-.button:focus {
+.basic_button:focus {
     color: white;
     background:  var(--light-blue);
     border: 3px solid var(--light-blue);
 }
 
-.button-disabled {
+.basic_button_disabled {
     background: gray;
     color: black;
     border: 3px solid transparent;
 }
 
-.button-disabled:hover {
+.basic_button_disabled:hover {
     cursor: not-allowed;
     color: black;
     background: gray;
@@ -44,10 +44,10 @@
 }
 
 
-.size-S {
+.basic_button_size-S {
     padding: 8px 16px;
 }
 
-.size-M {
+.basic_button_size-M {
     padding: 24px 32px
 }

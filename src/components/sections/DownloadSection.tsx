@@ -3,7 +3,7 @@ import { format } from 'date-fns'
 
 import BreadcrumbNav from '../basics/BreadcrumbNav/BreadcrumbNav'
 import Text from '../basics/Text/Text'
-import downloadStyles from './Download.module.css'
+import './Download.css'
 
 function flattenObject(obj: Record<string, any>): Record<string, string> {
   const toReturn = {}
@@ -71,11 +71,11 @@ const DownloadSection: React.FC<Props> = ({ setView }: Props) => {
     return (
       <>
         <BreadcrumbNav urlList={[{ url: '/', label: 'RE-START' }, { label: 'Download' }]} />
-        <div className={downloadStyles.content}>
+        <div className='download_content'>
           <Text>Please remember to download the data by clicking this link:</Text>
-          <div className={downloadStyles.downloadLinkWrapper}>
+          <div className='download_link-wrapper'>
             <a href={`data:text/json;charset=utf-8,${csv}`} download={`${fileName}.csv`}>
-              <Text size='XL' className={downloadStyles.downloadLink}>{`${fileName}.csv`}</Text>
+              <Text size='XL' className='download_link'>{`${fileName}.csv`}</Text>
             </a>
           </div>
         </div>

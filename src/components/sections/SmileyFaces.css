@@ -1,4 +1,4 @@
-.button-image {
+.smiley_button-image {
     background-color: transparent;
     margin: 16px;
     cursor: pointer;
@@ -6,20 +6,20 @@
     padding: 0;
 }
 
-.button-image:focus {
+.smiley_button-image:focus {
     outline:  deeppink solid 5px;
 }
 
-.button-image-selected {
+.smiley_button-image-selected {
     outline:  #26ABE2 solid 5px;
 }
 
-.smiley-image {
+.smiley_face-image {
     width: 100px;
     height: auto;
 }
 
-.image-wrapper {
+.smiley_image-wrapper {
     position: relative;
     top: 0;
     left: 0;
@@ -29,14 +29,14 @@
     margin-top: 16px;
 }
 
-.person-background {
+.smiley_person-background {
     position: absolute;
     top: 0;
     left: 0;
     width: 400px;
 }
 
-.person-image {
+.smiley_person-image {
     position: absolute;
     top: 0;
     left: 0;

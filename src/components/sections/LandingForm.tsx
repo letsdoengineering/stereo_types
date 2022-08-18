@@ -7,16 +7,14 @@ import FieldError from '../blocks/FieldError/FieldError'
 import Heading from '../basics/Heading/Heading'
 import Radio from '../basics/INPUTS/Radio/Radio'
 import Spacing from '../basics/Spacing/Spacing'
-import * as landingFormStylesAll from './LandingForm.module.css'
-
-const landingFormStyles = landingFormStylesAll.default
+import './LandingForm.css'
 
 type FormData = {
   age: string | number | undefined
   group: string
   name: string
   pictureSequence: string
-  characterChoiceLast: boolean
+  characterChoiceFirst: boolean
   gender: 'M' | 'F'
   quizBeforeSmileyFaces: boolean
 }
@@ -42,7 +40,7 @@ const LandingForm: React.FC<Props> = ({ setView }: Props) => {
   const [name, setName] = useState('')
   const [group, setGroup] = useState('')
   const [pictureSequence, setPictureSequence] = useState('')
-  const [characterChoiceLast, setCharacterChoiceLast] = useState(false)
+  const [characterChoiceFirst, setCharacterChoiceFirst] = useState(true)
   const [quizBeforeSmileyFaces, setQuizBeforeSmileyFaces] = useState(true)
 
   useEffect(() => {
@@ -106,7 +104,7 @@ const LandingForm: React.FC<Props> = ({ setView }: Props) => {
       group: group,
       name: name,
       pictureSequence: pictureSequence,
-      characterChoiceLast: characterChoiceLast,
+      characterChoiceFirst: characterChoiceFirst,
       gender: gender,
       quizBeforeSmileyFaces: quizBeforeSmileyFaces,
     }
@@ -114,7 +112,7 @@ const LandingForm: React.FC<Props> = ({ setView }: Props) => {
     const formIsValid = validateForm({ age, group, name, pictureSequence })
     if (formIsValid) {
       window.sessionStorage.setItem('detailsForm', JSON.stringify(formData))
-      if (!characterChoiceLast) {
+      if (characterChoiceFirst) {
         setView('characterChoice')
       } else {
         if (quizBeforeSmileyFaces) {
@@ -128,7 +126,7 @@ const LandingForm: React.FC<Props> = ({ setView }: Props) => {
 
   return (
     <form onSubmit={handleFormSubmit}>
-      <div className={landingFormStyles.detailsForm}>
+      <div className='landing-form_details-form'>
         <Heading level='2'>Enter Child Details:</Heading>
         <FieldError
           id='group-error'
@@ -224,12 +222,12 @@ const LandingForm: React.FC<Props> = ({ setView }: Props) => {
           <CheckboxGroup groupLabel='character choice location'>
             <Checkbox
               id='character-last-input'
-              name='characterChoiceLastInput'
-              isChecked={characterChoiceLast}
-              value={`${characterChoiceLast}`}
-              text='Ask character choice last?'
+              name='characterChoiceFirstInput'
+              isChecked={characterChoiceFirst}
+              value={`${characterChoiceFirst}`}
+              text='Ask character choice first?'
               onChange={(): void => {
-                setCharacterChoiceLast(!characterChoiceLast)
+                setCharacterChoiceFirst(!characterChoiceFirst)
               }}
             />
           </CheckboxGroup>
@@ -280,7 +278,7 @@ const LandingForm: React.FC<Props> = ({ setView }: Props) => {
                 setQuizBeforeSmileyFaces(true)
               }}
               isChecked={quizBeforeSmileyFaces}
-              label='Before'
+              label='Before smiley faces'
               value='A'
             />
             <Radio
@@ -289,13 +287,13 @@ const LandingForm: React.FC<Props> = ({ setView }: Props) => {
                 setQuizBeforeSmileyFaces(false)
               }}
               isChecked={!quizBeforeSmileyFaces}
-              label='After'
+              label='After smiley faces'
               value='B'
             />
           </CheckboxGroup>
         </label>
         <Spacing />
-        <div className={landingFormStyles.buttonWrapper}>
+        <div className='landing-form_button-wrapper'>
           <Button aria-describedby='form-error' size='M' type='submit' buttonText='Submit' />
         </div>
       </div>

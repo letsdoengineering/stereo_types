@@ -1,21 +1,21 @@
-.list {
+.breadcrumb_list {
     display: flex;
 }
 
-.link {
+.breadcrumb_link {
     text-decoration: none;
 }
 
-.link:hover {
+.breadcrumb_link:hover {
     text-decoration: underline;
     color: var(--dark-gray);
 }
 
-.link:focus {
+.breadcrumb_link:focus {
     text-decoration: underline;
     color: var(--dark-gray);
 }
 
-.divider {
+.breadcrumb_divider {
     margin: 0 8px;
 }

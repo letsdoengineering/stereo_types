@@ -5,7 +5,7 @@ import BreadcrumbNav from '../basics/BreadcrumbNav/BreadcrumbNav'
 import Text from '../basics/Text/Text'
 import getClassNames from '../../utils/get-class-names'
 import imageSources from './SmileyQuestionImageSequences'
-import smileyFacesStyles from './SmileyFaces.module.css'
+import './SmileyFaces.css'
 
 interface Props {
   setView(view: string): void
@@ -15,7 +15,7 @@ const SmileyFaces: React.FC<Props> = ({ setView }: Props) => {
   const [smileyQuestionResponses, setSmileyQuestionResponses] = useState({})
   const [chosenSmiley, setChosenSmiley] = useState('')
   const [questionNumber, setQuestionNumber] = useState(1)
-  const [characterChoiceLast, setCharacterChoiceLast] = useState(false)
+  const [characterChoiceFirst, setCharacterChoiceFirst] = useState(false)
   const [pictureSequence, setPictureSequence] = useState(null)
   const [quizBeforeSmileyFaces, setQuizBeforeSmileyFaces] = useState(false)
 
@@ -26,8 +26,8 @@ const SmileyFaces: React.FC<Props> = ({ setView }: Props) => {
     if (!detailsForm) {
       setView('landing')
     } else {
-      if (detailsForm.characterChoiceLast) {
-        setCharacterChoiceLast(detailsForm.characterChoiceLast)
+      if (detailsForm.characterChoiceFirst) {
+        setCharacterChoiceFirst(detailsForm.characterChoiceFirst)
       }
       if (detailsForm.pictureSequence) {
         setPictureSequence(detailsForm.pictureSequence)
@@ -36,7 +36,7 @@ const SmileyFaces: React.FC<Props> = ({ setView }: Props) => {
         setQuizBeforeSmileyFaces(detailsForm.quizBeforeSmileyFaces)
       }
     }
-  }, [])
+  }, [setView])
 
   const smileyFaceImages = [
     { name: '5' },
@@ -59,7 +59,7 @@ const SmileyFaces: React.FC<Props> = ({ setView }: Props) => {
       if (!quizBeforeSmileyFaces) {
         setView('quizQuestions')
       } else {
-        if (characterChoiceLast) {
+        if (!characterChoiceFirst) {
           setView('characterChoice')
         } else {
           setView('downloadForm')
@@ -84,16 +84,16 @@ const SmileyFaces: React.FC<Props> = ({ setView }: Props) => {
           <Text size='XL' weight='Bold'>
             How likely is this person to be an Engineer?
           </Text>
-          <div className={smileyFacesStyles.imageWrapper}>
+          <div className='smiley_image-wrapper'>
             <img
-              className={smileyFacesStyles.personImage}
+              className='smiley_person-image'
               alt={`background for question ${questionNumber}`}
               // eslint-disable-next-line @typescript-eslint/ban-ts-comment
               // @ts-ignore
               src={imageSources[pictureSequence][questionNumber].backgroundSrc}
             />
             <img
-              className={smileyFacesStyles.personBackground}
+              className='smiley_person-background'
               alt={`person for question ${questionNumber}`}
               // eslint-disable-next-line @typescript-eslint/ban-ts-comment
               // @ts-ignore
@@ -102,9 +102,9 @@ const SmileyFaces: React.FC<Props> = ({ setView }: Props) => {
           </div>
           {smileyFaceImages.map((face) => {
             const buttonClassNames = getClassNames({
-              defaultClasses: [smileyFacesStyles.buttonImage],
+              defaultClasses: ['smiley_button-image'],
               conditionalClasses: {
-                [`${smileyFacesStyles.buttonImageSelected}`]: chosenSmiley === face.name,
+                'smiley_button-image-selected': chosenSmiley === face.name,
               },
             })
             return (
@@ -118,7 +118,7 @@ const SmileyFaces: React.FC<Props> = ({ setView }: Props) => {
               >
                 <img
                   alt={`face of ${face.name}`}
-                  className={smileyFacesStyles.smileyImage}
+                  className='smiley_face-image'
                   src={`/images/smileys/${face.name}.png`}
                 />
               </button>
