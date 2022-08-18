@@ -1,19 +1,19 @@
-.button-image {
+.question_button-image {
     background-color: transparent;
     margin: 16px;
     cursor: pointer;
     padding: 0;
 }
 
-.button-image:focus {
+.question_button-image:focus {
     outline:  deeppink solid 5px;
 }
 
-.button-image-selected {
+.question_button-image-selected {
     outline:  #26ABE2 solid 5px;
 }
 
-.avatar-image {
+.question_avatar-image {
     position: relative;
     left: 50px;
     width: 200px;

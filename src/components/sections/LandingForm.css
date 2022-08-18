@@ -1,4 +1,4 @@
-.details-form {
+.landing-form_details-form {
     display: flex;
     text-align: left;
     align-content: center;
@@ -10,29 +10,29 @@
     margin: 0 auto;
 }
 
-.details-form input,select {
+.landing-form_details-form input,select {
     margin-left: 16px;
 }
 
-.details-form label {
+.landing-form_details-form label {
     color: var(--dark-gray);
 }
 
-.details-form > * {
+.landing-form_details-form > * {
     margin-bottom: 18px;
 }
 
-.details-form:last-child {
+.landing-form_details-form:last-child {
     margin-bottom: 0;
 }
 
-.button-wrapper {
+.landing-form_button-wrapper {
     display: flex;
     width: 100%;
     justify-content: center;
 }
 
-.button-wrapper button {
+.landing-form_button-wrapper button {
     max-width: 600px;
     width: 100%;
     padding: 24px 60px;

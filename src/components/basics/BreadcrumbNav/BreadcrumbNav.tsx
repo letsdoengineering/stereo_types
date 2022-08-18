@@ -2,7 +2,7 @@ import React from 'react'
 import Text from '../../basics/Text/Text'
 import ListItem from '../../basics/List/ListItem'
 import List from '../../basics/List/List'
-import breadcrumbNavStyles from './BreadcrumbNav.module.css'
+import './BreadcrumbNav.css'
 
 type Breadcrumb = {
   url?: string
@@ -16,7 +16,7 @@ type BreadCrumbProps = {
 const BreadcrumbNav: React.FC<BreadCrumbProps> = ({ urlList }) => {
   const navTrail = urlList.map((crumb: Breadcrumb, i) => {
     const location = crumb.url ? (
-      <a className={breadcrumbNavStyles.link} href={crumb.url}>
+      <a className='breadcrumb_link' href={crumb.url}>
         <Text>{crumb.label}</Text>
       </a>
     ) : (
@@ -25,12 +25,12 @@ const BreadcrumbNav: React.FC<BreadCrumbProps> = ({ urlList }) => {
 
     return (
       <ListItem key={`${i}-${crumb.label}`} listKey={`${i}-${crumb.label}`}>
-        {i > 0 && <Text className={breadcrumbNavStyles.divider}>{`>`}</Text>}
+        {i > 0 && <Text className='breadcrumb_divider'>{`>`}</Text>}
         {location}
       </ListItem>
     )
   })
-  return <List className={breadcrumbNavStyles.list}>{navTrail}</List>
+  return <List className='breadcrumb_list'>{navTrail}</List>
 }
 
 export default BreadcrumbNav

@@ -1,6 +1,6 @@
 import React from 'react'
 import getClassNames from '../../../utils/get-class-names'
-import dataListStyles from './DataList.module.css'
+import './DataList.css'
 
 type DataListItemValueProps = React.AllHTMLAttributes<HTMLElement> & {
   /** optional: class-names */
@@ -15,7 +15,7 @@ const DataListItemValue: React.FC<DataListItemValueProps> = ({
   children,
 }: DataListItemValueProps) => {
   const classNames = getClassNames({
-    defaultClasses: [`${dataListStyles.itemValue}`],
+    defaultClasses: ['data_list_item-value'],
     className,
   })
 

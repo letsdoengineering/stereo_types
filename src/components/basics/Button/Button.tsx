@@ -1,6 +1,6 @@
 import React from 'react'
 import getClassNames from '../../../utils/get-class-names'
-import buttonStyles from './Button.module.css'
+import './Button.css'
 
 type ButtonProps = {
   /** disabled */
@@ -33,12 +33,12 @@ const Button: React.FC<ButtonProps> = ({
   ...rest
 }: ButtonProps) => {
   const classNames = getClassNames({
-    defaultClasses: [`${buttonStyles.button}`, buttonStyles[`size${size}`]],
+    defaultClasses: ['basic_button', `basic_button_${size}`],
     className,
     conditionalClasses: {
-      [`${buttonStyles.buttonSecondary}`]: secondary,
-      [`${buttonStyles.buttonFillSpace}`]: fillSpace,
-      [`${buttonStyles.buttonDisabled}`]: disabled,
+      basic_button_secondary: secondary,
+      'basic_button_fill-space': fillSpace,
+      basic_button_disabled: disabled,
     },
   })
 

@@ -1,14 +1,14 @@
-.data-list {
+.data_list {
     display: flex;
     flex-direction: column;
 }
 
-.item-key {
+.data_list_item-key {
     display: inline-block;
     margin-inline-start: 0;
 }
 
-.item-value {
+.data_list_item-value {
     display: inline-block;
     margin-inline-start: 0;
 }
