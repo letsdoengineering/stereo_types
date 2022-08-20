@@ -119,7 +119,7 @@ const SmileyFaces: React.FC<Props> = ({ setView }: Props) => {
                 <img
                   alt={`face of ${face.name}`}
                   className='smiley_face-image'
-                  src={`/images/smileys/${face.name}.png`}
+                  src={`./images/smileys/${face.name}.png`}
                 />
               </button>
             )
@@ -134,14 +134,13 @@ const SmileyFaces: React.FC<Props> = ({ setView }: Props) => {
           />
         </div>
       </fieldset>
-      {/*<p>Choice - {chosenSmiley}</p>*/}
     </form>
   )
 
   return (
     <>
       <BreadcrumbNav
-        urlList={[{ url: '/', label: 're-start' }, { label: 'SmileyFace questions' }]}
+        urlList={[{ url: '/stereo_types', label: 're-start' }, { label: 'SmileyFace questions' }]}
       />
       {smileyQuestion(questionNumber)}
     </>

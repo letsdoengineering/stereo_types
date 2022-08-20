@@ -70,7 +70,9 @@ const DownloadSection: React.FC<Props> = ({ setView }: Props) => {
     const csv = convertToCSV([flatData])
     return (
       <>
-        <BreadcrumbNav urlList={[{ url: '/', label: 'RE-START' }, { label: 'Download' }]} />
+        <BreadcrumbNav
+          urlList={[{ url: '/stereo_types/', label: 'RE-START' }, { label: 'Download' }]}
+        />
         <div className='download_content'>
           <Text>Please remember to download the data by clicking this link:</Text>
           <div className='download_link-wrapper'>
@@ -84,7 +86,9 @@ const DownloadSection: React.FC<Props> = ({ setView }: Props) => {
   } else {
     return (
       <>
-        <BreadcrumbNav urlList={[{ url: '/', label: 'RE-START' }, { label: 'Download' }]} />
+        <BreadcrumbNav
+          urlList={[{ url: '/stereo_types/', label: 'RE-START' }, { label: 'Download' }]}
+        />
         <p>retrieving data....</p>
       </>
     )
