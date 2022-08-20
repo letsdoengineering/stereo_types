@@ -31,14 +31,14 @@ const CharacterQuestion: React.FC<Props> = ({ setView }: Props) => {
   }, [setView])
 
   const avatarImages = [
-    { src: '../../../images/avatar/white_female_disabled.png', name: 'white_female_disabled' },
-    { src: '../../../images/avatar/white_male_disabled.png', name: 'white_male_disabled' },
-    { src: '../../../images/avatar/black_female.png', name: 'black_female' },
-    { src: '../../../images/avatar/black_male.png', name: 'black_male' },
-    { src: '../../../images/avatar/asian_female.png', name: 'asian_female' },
-    { src: '../../../images/avatar/asian_male.png', name: 'asian_male' },
-    { src: '../../../images/avatar/white_female.png', name: 'white_female' },
-    { src: '../../../images/avatar/white_male.png', name: 'white_male' },
+    { src: './images/avatar/white_female_disabled.png', name: 'white_female_disabled' },
+    { src: './images/avatar/white_male_disabled.png', name: 'white_male_disabled' },
+    { src: './images/avatar/black_female.png', name: 'black_female' },
+    { src: './images/avatar/black_male.png', name: 'black_male' },
+    { src: './images/avatar/asian_female.png', name: 'asian_female' },
+    { src: './images/avatar/asian_male.png', name: 'asian_male' },
+    { src: './images/avatar/white_female.png', name: 'white_female' },
+    { src: './images/avatar/white_male.png', name: 'white_male' },
   ]
 
   const handleFormSubmit = async (event: FormEvent): Promise<void> => {
@@ -57,7 +57,9 @@ const CharacterQuestion: React.FC<Props> = ({ setView }: Props) => {
 
   return (
     <>
-      <BreadcrumbNav urlList={[{ url: '/', label: 're-start' }, { label: 'Character question' }]} />
+      <BreadcrumbNav
+        urlList={[{ url: '/stereo_types/', label: 'RE-START' }, { label: 'Character question' }]}
+      />
       <form onSubmit={handleFormSubmit}>
         <fieldset>
           <legend>Choose your character</legend>
@@ -81,7 +83,7 @@ const CharacterQuestion: React.FC<Props> = ({ setView }: Props) => {
                   <img
                     alt={`character ${character.name}`}
                     className='character_avatar-image'
-                    src={`/images/avatar/${character.name}.png`}
+                    src={`./images/avatar/${character.name}.png`}
                   />
                 </button>
               )
