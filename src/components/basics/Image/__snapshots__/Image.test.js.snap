@@ -1,9 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`Image has not changed the JSX layout of the page from previous snapshot 1`] = `
-<img
-  alt="Some text"
-  className="sizeM"
-  src="Some url"
-/>
-`;
