@@ -131,9 +131,7 @@ const QuizQuestions: React.FC<Props> = ({ setView }: Props) => {
 
   return (
     <>
-      <BreadcrumbNav
-        urlList={[{ url: '/stereo_types/', label: 'RE-START' }, { label: 'Quiz questions' }]}
-      />
+      <BreadcrumbNav urlList={[{ url: '.', label: 'RE-START' }, { label: 'Quiz questions' }]} />
       {quizQuestion(questionNumber)}
     </>
   )

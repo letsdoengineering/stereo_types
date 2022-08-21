@@ -2,6 +2,7 @@
   "name": "little_survey",
   "version": "0.1.0",
   "private": true,
+  "homepage": "./stereo_types/",
   "description": "Engineering survey",
   "scripts": {
     "start": "react-scripts start",

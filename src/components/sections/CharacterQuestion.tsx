@@ -57,9 +57,7 @@ const CharacterQuestion: React.FC<Props> = ({ setView }: Props) => {
 
   return (
     <>
-      <BreadcrumbNav
-        urlList={[{ url: '/stereo_types/', label: 'RE-START' }, { label: 'Character question' }]}
-      />
+      <BreadcrumbNav urlList={[{ url: '.', label: 'RE-START' }, { label: 'Character question' }]} />
       <form onSubmit={handleFormSubmit}>
         <fieldset>
           <legend>Choose your character</legend>

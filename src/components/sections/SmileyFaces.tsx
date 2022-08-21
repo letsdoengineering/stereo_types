@@ -140,7 +140,7 @@ const SmileyFaces: React.FC<Props> = ({ setView }: Props) => {
   return (
     <>
       <BreadcrumbNav
-        urlList={[{ url: '/stereo_types', label: 're-start' }, { label: 'SmileyFace questions' }]}
+        urlList={[{ url: '.', label: 'RE-START' }, { label: 'SmileyFace questions' }]}
       />
       {smileyQuestion(questionNumber)}
     </>

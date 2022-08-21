@@ -126,7 +126,6 @@ const LandingForm: React.FC<Props> = ({ setView }: Props) => {
 
   return (
     <form onSubmit={handleFormSubmit}>
-      <img src={'./images/smileys/1.png'} alt={'should be a smile pic'} />
       <div className='landing-form_details-form'>
         <Heading level='2'>Enter Child Details:</Heading>
         <FieldError
