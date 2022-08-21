@@ -51,7 +51,7 @@ const SmileyFaces: React.FC<Props> = ({ setView }: Props) => {
       [questionNumber]: chosenSmiley,
     }
     setSmileyQuestionResponses({ ...smileyQuestionResponses, ...latestAnswer })
-    if (questionNumber === 8) {
+    if (questionNumber === 32) {
       window.sessionStorage.setItem(
         'smileyQuestions',
         JSON.stringify({ ...smileyQuestionResponses, ...latestAnswer })
