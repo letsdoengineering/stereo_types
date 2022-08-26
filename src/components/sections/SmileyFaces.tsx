@@ -5,6 +5,7 @@ import BreadcrumbNav from '../basics/BreadcrumbNav/BreadcrumbNav'
 import Text from '../basics/Text/Text'
 import getClassNames from '../../utils/get-class-names'
 import imageSources from './SmileyQuestionImageSequences'
+import { VIEWS } from '../../App'
 import './SmileyFaces.css'
 
 interface Props {
@@ -24,7 +25,7 @@ const SmileyFaces: React.FC<Props> = ({ setView }: Props) => {
     const detailsForm = detailsFormString ? JSON.parse(detailsFormString) : null
 
     if (!detailsForm) {
-      setView('landing')
+      setView(VIEWS.LANDING)
     } else {
       if (detailsForm.characterChoiceFirst) {
         setCharacterChoiceFirst(detailsForm.characterChoiceFirst)
@@ -56,16 +57,16 @@ const SmileyFaces: React.FC<Props> = ({ setView }: Props) => {
     setSmileyQuestionResponses({ ...smileyQuestionResponses, ...latestAnswer })
     if (questionNumber === numberOfQuestions) {
       window.sessionStorage.setItem(
-        'smileyQuestions',
+        VIEWS.SMILEY,
         JSON.stringify({ ...smileyQuestionResponses, ...latestAnswer })
       )
       if (!quizBeforeSmileyFaces) {
-        setView('quizQuestions')
+        setView(VIEWS.QUIZ)
       } else {
         if (!characterChoiceFirst) {
-          setView('characterChoice')
+          setView(VIEWS.CHARACTER)
         } else {
-          setView('downloadForm')
+          setView(VIEWS.SUCCESS)
         }
       }
     } else {

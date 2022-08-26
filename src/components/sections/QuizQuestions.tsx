@@ -3,6 +3,7 @@ import React, { FormEvent, useEffect, useState } from 'react'
 import getClassNames from '../../utils/get-class-names'
 import Button from '../basics/Button/Button'
 import BreadcrumbNav from '../basics/BreadcrumbNav/BreadcrumbNav'
+import { VIEWS } from '../../App'
 import './QuizQuestions.css'
 
 const defaultCharacterButtons = {
@@ -32,7 +33,7 @@ const QuizQuestions: React.FC<Props> = ({ setView }: Props) => {
     const detailsForm = detailsFormString ? JSON.parse(detailsFormString) : null
 
     if (!detailsForm) {
-      setView('landing')
+      setView(VIEWS.LANDING)
     } else {
       if (detailsForm.characterChoiceFirst) {
         setCharacterChoiceFirst(detailsForm.characterChoiceFirst)
@@ -63,16 +64,16 @@ const QuizQuestions: React.FC<Props> = ({ setView }: Props) => {
     setChosenCharacters(defaultCharacterButtons)
     if (questionNumber === 8) {
       window.sessionStorage.setItem(
-        'quizQuestions',
+        VIEWS.QUIZ,
         JSON.stringify({ ...quizQuestionResponses, ...latestAnswer })
       )
       if (quizBeforeSmileyFaces) {
-        setView('smileyQuestions')
+        setView(VIEWS.SMILEY)
       } else {
         if (!characterChoiceFirst) {
-          setView('characterChoice')
+          setView(VIEWS.CHARACTER)
         } else {
-          setView('downloadForm')
+          setView(VIEWS.SUCCESS)
         }
       }
     } else {
