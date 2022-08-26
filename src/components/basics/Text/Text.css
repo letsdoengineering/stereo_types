@@ -1,39 +1,39 @@
-.text-gray {
+.text_styles-color-Gray {
     color: var(--dark-gray)
 }
 
-.text-blue {
+.text_styles-color-Blue {
     color: var(--default-blue)
 }
 
-.size-XS {
+.text_styles-size-XS {
     font-size: var(--font-size-XS);
 }
 
-.size-S {
+.text_styles-size-S {
     font-size: var(--font-size-S);
 }
 
-.size-M {
+.text_styles-size-M {
     font-size: var(--font-size-M);
 }
 
-.size-L {
+.text_styles-size-L {
     font-size: var(--font-size-L);
 }
 
-.size-XL {
+.text_styles-size-XL {
     font-size: var(--font-size-XL);
 }
 
-.weight-normal {
+.text_styles-weight-Normal {
     font-weight: var(--font-weight-normal);
 }
 
-.weight-bold {
+.text_styles-weight-Bold {
     font-weight: var(--font-weight-bold);
 }
 
-.weight-xtra {
+.text_styles-weight-Xtra {
     font-weight: var(--font-weight-xtra);
 }
