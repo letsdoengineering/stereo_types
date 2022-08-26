@@ -7,7 +7,7 @@ interface GenericLayoutProps {
 }
 
 /** GenericLayout: generic layout with a footer and header used to e.g. wrap other layouts */
-const GenericLayout = ({ children }: GenericLayoutProps): React.ReactNode => (
+const GenericLayout = ({ children }: GenericLayoutProps): JSX.Element => (
   <div className='generic-layout_full-page'>
     <main>
       <Heading>Engineering Survey for wee ones</Heading>

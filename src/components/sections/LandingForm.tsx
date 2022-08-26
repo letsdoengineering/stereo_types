@@ -7,6 +7,7 @@ import FieldError from '../blocks/FieldError/FieldError'
 import Heading from '../basics/Heading/Heading'
 import Radio from '../basics/INPUTS/Radio/Radio'
 import Spacing from '../basics/Spacing/Spacing'
+import { VIEWS } from '../../App'
 import './LandingForm.css'
 
 type FormData = {
@@ -113,191 +114,198 @@ const LandingForm: React.FC<Props> = ({ setView }: Props) => {
     if (formIsValid) {
       window.sessionStorage.setItem('detailsForm', JSON.stringify(formData))
       if (characterChoiceFirst) {
-        setView('characterChoice')
+        setView(VIEWS.CHARACTER)
       } else {
         if (quizBeforeSmileyFaces) {
-          setView('quizQuestions')
+          setView(VIEWS.QUIZ)
         } else {
-          setView('smileyQuestions')
+          setView(VIEWS.SMILEY)
         }
       }
     }
   }
 
   return (
-    <form onSubmit={handleFormSubmit}>
-      <div className='landing-form_details-form'>
-        <Heading level='2'>Enter Child Details:</Heading>
-        <FieldError
-          id='group-error'
-          errorMessage='Error: please enter a group name.'
-          showError={groupError}
-        >
+    <>
+      <form onSubmit={handleFormSubmit}>
+        <div className='landing-form_details-form'>
+          <Heading level='2'>Enter Child Details:</Heading>
+          <FieldError
+            id='group-error'
+            errorMessage='Error: please enter a group name.'
+            showError={groupError}
+          >
+            <label>
+              Group:
+              <input
+                aria-describedby='group-error'
+                autoComplete='off'
+                type='text'
+                name='groupInput'
+                value={group}
+                onBlur={(event): void => {
+                  validateGroup(event.target.value)
+                }}
+                onChange={(event): void => {
+                  setGroup(event.target.value)
+                }}
+              />
+            </label>
+          </FieldError>
+          <FieldError
+            id='name-error'
+            errorMessage='Error: please enter a child name.'
+            showError={nameError}
+          >
+            <label>
+              Name:
+              <input
+                aria-describedby='name-error'
+                autoComplete='off'
+                type='text'
+                name='nameInput'
+                value={name}
+                onBlur={(event): void => {
+                  validateName(event.target.value)
+                }}
+                onChange={(event): void => {
+                  setName(event.target.value)
+                }}
+              />
+            </label>
+          </FieldError>
+          <FieldError
+            id='age-error'
+            errorMessage="Error: please enter child's age in months, from 12-240. (i.e 5yrs = 60)"
+            showError={ageError}
+          >
+            <label>
+              Age (in months):
+              <input
+                aria-describedby='age-error'
+                autoComplete='off'
+                type='number'
+                name='ageInput'
+                value={age}
+                onBlur={(event): void => {
+                  validateAge(event.target.value)
+                }}
+                onChange={(event): void => {
+                  setAge(event.target.value)
+                }}
+              />
+            </label>
+          </FieldError>
           <label>
-            Group:
-            <input
-              aria-describedby='group-error'
-              autoComplete='off'
-              type='text'
-              name='groupInput'
-              value={group}
-              onBlur={(event): void => {
-                validateGroup(event.target.value)
-              }}
-              onChange={(event): void => {
-                setGroup(event.target.value)
-              }}
-            />
+            <div>Gender:</div>
+            <CheckboxGroup groupLabel='Gender'>
+              <Radio
+                name='gender'
+                onChange={(): void => {
+                  setGender('F')
+                }}
+                isChecked={gender === 'F'}
+                label='Female'
+                value='F'
+              />
+              <Radio
+                name='gender'
+                onChange={(): void => {
+                  setGender('M')
+                }}
+                isChecked={gender === 'M'}
+                label='Male'
+                value='M'
+              />
+            </CheckboxGroup>
           </label>
-        </FieldError>
-        <FieldError
-          id='name-error'
-          errorMessage='Error: please enter a child name.'
-          showError={nameError}
-        >
           <label>
-            Name:
-            <input
-              aria-describedby='name-error'
-              autoComplete='off'
-              type='text'
-              name='nameInput'
-              value={name}
-              onBlur={(event): void => {
-                validateName(event.target.value)
-              }}
-              onChange={(event): void => {
-                setName(event.target.value)
-              }}
-            />
+            <div>Character Choice Timing:</div>
+            <CheckboxGroup groupLabel='character choice location'>
+              <Checkbox
+                id='character-last-input'
+                name='characterChoiceFirstInput'
+                isChecked={characterChoiceFirst}
+                value={`${characterChoiceFirst}`}
+                text='Ask character choice first?'
+                onChange={(): void => {
+                  setCharacterChoiceFirst(!characterChoiceFirst)
+                }}
+              />
+            </CheckboxGroup>
           </label>
-        </FieldError>
-        <FieldError
-          id='age-error'
-          errorMessage="Error: please enter child's age in months, from 12-240. (i.e 5yrs = 60)"
-          showError={ageError}
-        >
+          <FieldError
+            id='picture-sequence-error'
+            errorMessage='Error: please chose an option, (cycle through for each child pls)'
+            showError={pictureSequenceError}
+          >
+            <label>
+              <div>SmileyFace Picture Sequence:</div>
+              <select
+                aria-describedby='picture-sequence-error'
+                name='pictureSequence'
+                onChange={(event): void => {
+                  setPictureSequence(event.target.value)
+                }}
+                onBlur={(event): void => {
+                  const value = event.target.value
+                  validatePictureSequence(value)
+                }}
+                defaultValue='none'
+              >
+                <option value='none' disabled hidden>
+                  -- please choose a sequence --
+                </option>
+                {[
+                  { label: 'Sequence 1', value: '1' },
+                  { label: 'Sequence 2', value: '2' },
+                  { label: 'Sequence 3', value: '3' },
+                  { label: 'Sequence 4', value: '4' },
+                ].map((item) => {
+                  return (
+                    <option key={`${item.value}-${item.label}`} value={item.value}>
+                      {item.label}
+                    </option>
+                  )
+                })}
+              </select>
+            </label>
+          </FieldError>
           <label>
-            Age (in months):
-            <input
-              aria-describedby='age-error'
-              autoComplete='off'
-              type='number'
-              name='ageInput'
-              value={age}
-              onBlur={(event): void => {
-                validateAge(event.target.value)
-              }}
-              onChange={(event): void => {
-                setAge(event.target.value)
-              }}
-            />
+            <div>Quiz Section Order:</div>
+            <CheckboxGroup groupLabel='Quiz section before/after smileys questions'>
+              <Radio
+                name='quizBeforeSmileyFaces'
+                onChange={(): void => {
+                  setQuizBeforeSmileyFaces(true)
+                }}
+                isChecked={quizBeforeSmileyFaces}
+                label='Before smiley faces'
+                value='A'
+              />
+              <Radio
+                name='quizBeforeSmileyFaces'
+                onChange={(): void => {
+                  setQuizBeforeSmileyFaces(false)
+                }}
+                isChecked={!quizBeforeSmileyFaces}
+                label='After smiley faces'
+                value='B'
+              />
+            </CheckboxGroup>
           </label>
-        </FieldError>
-        <label>
-          <div>Gender:</div>
-          <CheckboxGroup groupLabel='Gender'>
-            <Radio
-              name='gender'
-              onChange={(): void => {
-                setGender('F')
-              }}
-              isChecked={gender === 'F'}
-              label='Female'
-              value='F'
-            />
-            <Radio
-              name='gender'
-              onChange={(): void => {
-                setGender('M')
-              }}
-              isChecked={gender === 'M'}
-              label='Male'
-              value='M'
-            />
-          </CheckboxGroup>
-        </label>
-        <label>
-          <div>Character Choice Timing:</div>
-          <CheckboxGroup groupLabel='character choice location'>
-            <Checkbox
-              id='character-last-input'
-              name='characterChoiceFirstInput'
-              isChecked={characterChoiceFirst}
-              value={`${characterChoiceFirst}`}
-              text='Ask character choice first?'
-              onChange={(): void => {
-                setCharacterChoiceFirst(!characterChoiceFirst)
-              }}
-            />
-          </CheckboxGroup>
-        </label>
-        <FieldError
-          id='picture-sequence-error'
-          errorMessage='Error: please chose an option, (cycle through for each child pls)'
-          showError={pictureSequenceError}
-        >
-          <label>
-            <div>SmileyFace Picture Sequence:</div>
-            <select
-              aria-describedby='picture-sequence-error'
-              name='pictureSequence'
-              onChange={(event): void => {
-                setPictureSequence(event.target.value)
-              }}
-              onBlur={(event): void => {
-                const value = event.target.value
-                validatePictureSequence(value)
-              }}
-              defaultValue='none'
-            >
-              <option value='none' disabled hidden>
-                -- please choose a sequence --
-              </option>
-              {[
-                { label: 'Sequence 1', value: '1' },
-                { label: 'Sequence 2', value: '2' },
-                { label: 'Sequence 3', value: '3' },
-                { label: 'Sequence 4', value: '4' },
-              ].map((item) => {
-                return (
-                  <option key={`${item.value}-${item.label}`} value={item.value}>
-                    {item.label}
-                  </option>
-                )
-              })}
-            </select>
-          </label>
-        </FieldError>
-        <label>
-          <div>Quiz Section Order:</div>
-          <CheckboxGroup groupLabel='Quiz section before/after smileys questions'>
-            <Radio
-              name='quizBeforeSmileyFaces'
-              onChange={(): void => {
-                setQuizBeforeSmileyFaces(true)
-              }}
-              isChecked={quizBeforeSmileyFaces}
-              label='Before smiley faces'
-              value='A'
-            />
-            <Radio
-              name='quizBeforeSmileyFaces'
-              onChange={(): void => {
-                setQuizBeforeSmileyFaces(false)
-              }}
-              isChecked={!quizBeforeSmileyFaces}
-              label='After smiley faces'
-              value='B'
-            />
-          </CheckboxGroup>
-        </label>
-        <Spacing />
-        <div className='landing-form_button-wrapper'>
-          <Button aria-describedby='form-error' size='M' type='submit' buttonText='Submit' />
+          <Spacing />
+          <div className='landing-form_button-wrapper'>
+            <Button aria-describedby='form-error' size='M' type='submit' buttonText='Submit' />
+          </div>
         </div>
+      </form>
+      <div className='landing-footer-wrapper'>
+        <button type='button' onClick={(): void => setView(VIEWS.MANAGE)}>
+          Manage Data/Downloads
+        </button>
       </div>
-    </form>
+    </>
   )
 }
 

@@ -14,7 +14,7 @@ const mockLocalStorage = {
   removeItem: jest.fn().mockImplementation((key) => delete mockStore[key]),
 }
 
-describe('use-local-storag', () => {
+describe('use-local-storage', () => {
   describe('setPreviousSearchDataToLocalStorage', () => {
     beforeEach(() => {
       Object.defineProperty(window, 'localStorage', {

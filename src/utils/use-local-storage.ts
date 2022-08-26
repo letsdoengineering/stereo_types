@@ -1,8 +1,8 @@
 /** check code is running in browser before using window - Gatsby build will fail otherwise */
 const isBrowser = typeof window !== 'undefined'
 
-export const setDataToLocalStorage = (formData: Record<string, any>, key: string): void => {
-  if (isBrowser) window.localStorage.setItem(key, JSON.stringify({ ...formData }))
+export const setDataToLocalStorage = (object: Record<string, any>, key: string): void => {
+  if (isBrowser) window.localStorage.setItem(key, JSON.stringify({ ...object }))
 }
 
 /**
@@ -13,9 +13,7 @@ export const setDataToLocalStorage = (formData: Record<string, any>, key: string
  */
 export const getDataFromLocalStorage = (key: string): Record<string, any> => {
   if (!isBrowser) return {}
-  const previousSearchData = window.localStorage.getItem(key)
-  /** if previousSearchData has not been previously set return undefined */
-  if (!previousSearchData) return {}
-
-  return JSON.parse(previousSearchData)
+  const data = window.localStorage.getItem(key)
+  if (!data) return {}
+  return JSON.parse(data)
 }
