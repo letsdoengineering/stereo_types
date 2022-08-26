@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import GenericLayout from './components/layouts/GenericLayout/GenericLayout'
 import LandingForm from './components/sections/LandingForm'
 import CharacterQuestion from './components/sections/CharacterQuestion'
@@ -10,6 +10,9 @@ import './App.css'
 
 function App() {
   const [view, setView] = useState('landingForm')
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [view])
   return (
     <GenericLayout>
       {view === 'landingForm' && <LandingForm setView={setView} />}
