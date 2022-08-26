@@ -1,0 +1,20 @@
+.download_content {
+    margin: 12px;
+    text-align: left;
+}
+
+.download_link {
+    margin: 16px;
+    font-size: 1.5rem;
+}
+
+.download_list_item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.download_delete_button {
+    height: max-content;
+}

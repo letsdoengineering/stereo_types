@@ -135,7 +135,7 @@ const LandingForm: React.FC<Props> = ({ setView }: Props) => {
             errorMessage='Error: please enter a group name.'
             showError={groupError}
           >
-            <label>
+            <label title='Use ManageDownload button below to see the group names of existing surveys, reusing a name will append the data to that groups data!'>
               Group:
               <input
                 aria-describedby='group-error'

@@ -1,10 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { format } from 'date-fns'
 
 import BreadcrumbNav from '../basics/BreadcrumbNav/BreadcrumbNav'
 import Text from '../basics/Text/Text'
-import { getDataFromLocalStorage } from '../../utils/use-local-storage'
-import './Download.css'
+import Heading from '../basics/Heading/Heading'
+import { getDataFromLocalStorage, setDataToLocalStorage } from '../../utils/use-local-storage'
+import './ManageDownload.css'
 
 function flattenObject(obj: Record<string, any>): Record<string, string> {
   const toReturn = {}
@@ -30,11 +31,8 @@ function flattenObject(obj: Record<string, any>): Record<string, string> {
   return toReturn
 }
 
-function convertToCSV(arr: any[]): string[] {
+function convertToCSV(arr: any[]): string {
   const array = [Object.keys(arr[0])].concat(arr)
-
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
   return array
     .map((it) => {
       return Object.values(it).toString()
@@ -43,20 +41,62 @@ function convertToCSV(arr: any[]): string[] {
 }
 
 const ManageDownloads: React.FC = (): JSX.Element => {
-  // if (typeof window === 'undefined') return null
-  const todaysDate = format(new Date(), 'yyyy-MM-dd')
-  const allGroupsData = getDataFromLocalStorage('allGroups')
-  console.log('allGroupsData:', allGroupsData)
-  const groupNames = Object.keys(allGroupsData)
+  const [allGroupsData, setAllGroupsData] = useState(getDataFromLocalStorage('allGroups'))
+  // const allGroupsData = getDataFromLocalStorage('allGroups')
+  const allGroupNames = Object.keys(allGroupsData)
 
-  const groupLinks = groupNames.map((groupName) => {
-    const flatData = flattenObject(allGroupsData[groupName])
-    const csv = convertToCSV([flatData])
+  const handleDeleteGroup = (groupName: string): void => {
+    const shouldDelete = window.confirm(
+      `PRESS OK TO REMOVE ALL THE DATA FOR '${groupName}'. Press Cancel to leave it alone.`
+    )
+    if (shouldDelete) {
+      const reallyShouldDelete = window.confirm(
+        `ARE YOU SURE!?? Pressing 'OK' will remove data for group "${groupName}". Press 'Cancel' to back away from this.`
+      )
+      if (reallyShouldDelete) {
+        // const allGroupsData = getDataFromLocalStorage('allGroups')
+        const remainingGroupNames = Object.keys(allGroupsData).filter(
+          (group) => group !== groupName
+        )
+        const remainingGroupsData: Record<string, any> = {}
+        remainingGroupNames.forEach(
+          (groupName) => (remainingGroupsData[groupName] = allGroupsData[groupName])
+        )
+        setDataToLocalStorage(remainingGroupsData, 'allGroups')
+        setAllGroupsData(remainingGroupsData)
+      }
+    }
+  }
+
+  // map over the names of each group to make cvs file and download link
+  const groupDownLoadLinks = allGroupNames.map((groupName) => {
+    const namesInGroup = Object.keys(allGroupsData[groupName]) // get array of child names from group to pull data out with for flattening
+    const arrayOfGroupsFlattenedData = namesInGroup.map((name) => {
+      // Pull out each child's data using their name from current group: allGroupsData[groupName][name]
+      // then flatten that survey-data object so all the flat keys are the same
+      // (child's name is in the values, group name is the file name)
+      return flattenObject(allGroupsData[groupName][name])
+    })
+    const csvData = convertToCSV(arrayOfGroupsFlattenedData) // convert array of groups flattened data to csv
+    const todaysDate = format(new Date(), 'yyyy-MM-dd')
     const fileName = groupName + '_' + todaysDate
     return (
-      <a key={fileName} href={`data:text/json;charset=utf-8,${csv}`} download={`${fileName}.csv`}>
-        <Text size='XL' className='download_link'>{`${fileName}.csv`}</Text>
-      </a>
+      <li key={fileName} className='download_list_item'>
+        <a
+          className='download_link'
+          href={`data:text/json;charset=utf-8,${csvData}`}
+          download={`${fileName}.csv`}
+        >
+          <Text size='XL'>{groupName}</Text>
+        </a>
+        <button
+          className='download_delete_button'
+          type='button'
+          onClick={(): void => handleDeleteGroup(groupName)}
+        >
+          Delete Group
+        </button>
+      </li>
     )
   })
 
@@ -64,7 +104,12 @@ const ManageDownloads: React.FC = (): JSX.Element => {
     <>
       <BreadcrumbNav urlList={[{ url: '.', label: 'RE-START' }, { label: 'Manage Downloads' }]} />
       <div className='download_content'>
-        <div className='download_link-wrapper'>{groupLinks}</div>
+        <Heading level='2'>
+          <Text size='L'>
+            Click group name to download a csv file of the group&apos;s survey data
+          </Text>
+        </Heading>
+        <ul>{groupDownLoadLinks}</ul>
       </div>
     </>
   )

@@ -1,10 +1,12 @@
 import React from 'react'
+import { format } from 'date-fns'
 
+import { getDataFromLocalStorage, setDataToLocalStorage } from '../../utils/use-local-storage'
 import BreadcrumbNav from '../basics/BreadcrumbNav/BreadcrumbNav'
+import Heading from '../basics/Heading/Heading'
 import Text from '../basics/Text/Text'
 import { VIEWS } from '../../App'
-import './Download.css'
-import { getDataFromLocalStorage, setDataToLocalStorage } from '../../utils/use-local-storage'
+import './SuccessPage.css'
 
 const SuccessPage: React.FC = (): JSX.Element => {
   // if (typeof window === 'undefined') return null
@@ -21,27 +23,58 @@ const SuccessPage: React.FC = (): JSX.Element => {
 
   // PULL OUT ALL STORED SURVEYS
   const allGroupsData = getDataFromLocalStorage('allGroups')
-  console.log('allGroupsData:', allGroupsData)
 
   if (newSurvey) {
-    const latestChildData = { details, character, smileyQuestions, quizQuestions }
-    const latestChildName = latestChildData.details.name
-    const latestGroupName = latestChildData.details.group
+    const latestChildData = {
+      dateCollected: format(new Date(), 'yyyy-MM-dd'),
+      ...details,
+      character: character.character,
+      smileyQuestions,
+      quizQuestions,
+    }
+    const latestChildName = latestChildData.name
+    const latestGroupName = latestChildData.group
 
     // Retrieve other surveys from this group
-    const existingGroupData = allGroupsData.latestGroupName
-    const latestGroupFullData = { ...existingGroupData, latestChildName: latestChildData }
-    console.log('adding latest survey:', { [latestGroupName]: latestGroupFullData })
+    const existingGroupData = allGroupsData[latestGroupName]
+
+    // Add latest survey to the current group (if any others exist)
+    const latestGroupUpdatedData = { ...existingGroupData, [latestChildName]: latestChildData }
 
     // STORE with other surveys under the group name in local storage.
-    setDataToLocalStorage({ [latestGroupName]: latestGroupFullData }, 'allGroups')
+    setDataToLocalStorage(
+      { ...allGroupsData, [latestGroupName]: latestGroupUpdatedData },
+      'allGroups'
+    )
 
     return (
       <>
         <BreadcrumbNav urlList={[{ url: '.', label: 'RE-START' }, { label: 'Success Page' }]} />
-        <div className='download_content'>
-          <Text>{`Successfully completed quiz for ${latestChildName}`}</Text>
-          <Text>{`Data stored under group: ${latestGroupName}`}</Text>
+        <Heading level='2'>Survey Completed!</Heading>
+        <iframe
+          title='Dancing Lemon'
+          src='https://giphy.com/embed/d2L6QAODBKlAVdqz95'
+          width='200'
+          height='200'
+          frameBorder='0'
+          className='giphy-embed'
+          allowFullScreen
+        ></iframe>
+        <div className='success_page-content'>
+          <Text size='M'>{`Successfully completed quiz for `}</Text>
+          <Text size='L' weight='Bold'>
+            &quot;{latestChildName}&quot;
+          </Text>
+          <br />
+          <br />
+          <Text size='M'>{`Data stored under group `}</Text>
+          <Text size='L' weight='Bold'>
+            &quot;{latestGroupName}&quot;
+          </Text>
+          <br />
+          <br />
+          <br />
+          <p>Note: Use button at bottom of start page to download data when ready :-)</p>
         </div>
       </>
     )

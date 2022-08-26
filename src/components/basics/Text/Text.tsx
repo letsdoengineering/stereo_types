@@ -1,6 +1,6 @@
 import React from 'react'
-import textStyles from './Text.module.css'
 import getClassNames from '../../../utils/get-class-names'
+import './Text.css'
 
 // TODO: find appropriate interface to extend for span, p and text
 type TextProps = {
@@ -34,9 +34,9 @@ const Text: React.FC<TextProps> = ({
 }: TextProps) => {
   const classNames = getClassNames({
     defaultClasses: [
-      textStyles[`size${size}`],
-      textStyles[`weight${weight}`],
-      textStyles[`text${color}`],
+      `text_styles-size-${size}`,
+      `text_styles-weight-${weight}`,
+      `text_styles-color-${color}`,
     ],
     className,
   })
