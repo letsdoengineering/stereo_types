@@ -18,7 +18,7 @@ const SmileyFaces: React.FC<Props> = ({ setView }: Props) => {
   const [characterChoiceFirst, setCharacterChoiceFirst] = useState(false)
   const [pictureSequence, setPictureSequence] = useState(null)
   const [quizBeforeSmileyFaces, setQuizBeforeSmileyFaces] = useState(false)
-
+  const [numberOfQuestions, setNumberOfQuestion] = useState<number>()
   useEffect(() => {
     const detailsFormString = window.sessionStorage.getItem('detailsForm')
     const detailsForm = detailsFormString ? JSON.parse(detailsFormString) : null
@@ -30,6 +30,9 @@ const SmileyFaces: React.FC<Props> = ({ setView }: Props) => {
         setCharacterChoiceFirst(detailsForm.characterChoiceFirst)
       }
       if (detailsForm.pictureSequence) {
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        setNumberOfQuestion(Object.keys(imageSources[detailsForm.pictureSequence]).length)
         setPictureSequence(detailsForm.pictureSequence)
       }
       if (detailsForm.quizBeforeSmileyFaces) {
@@ -51,7 +54,7 @@ const SmileyFaces: React.FC<Props> = ({ setView }: Props) => {
       [questionNumber]: chosenSmiley,
     }
     setSmileyQuestionResponses({ ...smileyQuestionResponses, ...latestAnswer })
-    if (questionNumber === 32) {
+    if (questionNumber === numberOfQuestions) {
       window.sessionStorage.setItem(
         'smileyQuestions',
         JSON.stringify({ ...smileyQuestionResponses, ...latestAnswer })
