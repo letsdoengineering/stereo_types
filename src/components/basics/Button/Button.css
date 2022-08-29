@@ -4,6 +4,7 @@
     background-color: var(--default-blue);
     color: white;
     border: 3px solid var(--default-blue);
+    padding: 8px;
 }
 
 .basic_button_fill-space {
@@ -19,20 +20,16 @@
 
 .basic_button:hover {
     cursor: pointer;
-    color: white;
-    background:  var(--light-blue);
-    border: 3px solid var(--light-blue);
+    outline:  white solid 5px;
 }
 
 .basic_button:focus {
-    color: white;
-    background:  var(--light-blue);
-    border: 3px solid var(--light-blue);
+    outline:  white solid 5px;
 }
 
 .basic_button_disabled {
-    background: gray;
-    color: black;
+    background: var(--slate-gray);
+    color: var(--dark-gray);
     border: 3px solid transparent;
 }
 

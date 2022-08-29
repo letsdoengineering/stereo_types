@@ -3,6 +3,7 @@ import React, { FormEvent, useEffect, useState } from 'react'
 import Button from '../basics/Button/Button'
 import BreadcrumbNav from '../basics/BreadcrumbNav/BreadcrumbNav'
 import getClassNames from '../../utils/get-class-names'
+import Heading from '../basics/Heading/Heading'
 import { VIEWS } from '../../App'
 import './CharacterQuestion.css'
 
@@ -59,9 +60,9 @@ const CharacterQuestion: React.FC<Props> = ({ setView }: Props) => {
   return (
     <>
       <BreadcrumbNav urlList={[{ url: '.', label: 'RE-START' }, { label: 'Character question' }]} />
-      <form onSubmit={handleFormSubmit}>
-        <fieldset>
-          <legend>Choose your character</legend>
+      <form onSubmit={handleFormSubmit} className='question_form_wrapper'>
+        <div>
+          <Heading level='2'>Choose your character</Heading>
           <>
             {avatarImages.map((character) => {
               const buttonClassNames = getClassNames({
@@ -96,7 +97,7 @@ const CharacterQuestion: React.FC<Props> = ({ setView }: Props) => {
               fillSpace={false}
             />
           </div>
-        </fieldset>
+        </div>
       </form>
     </>
   )

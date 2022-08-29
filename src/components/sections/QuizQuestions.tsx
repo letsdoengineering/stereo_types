@@ -1,8 +1,9 @@
 import React, { FormEvent, useEffect, useState } from 'react'
 
 import getClassNames from '../../utils/get-class-names'
-import Button from '../basics/Button/Button'
 import BreadcrumbNav from '../basics/BreadcrumbNav/BreadcrumbNav'
+import Button from '../basics/Button/Button'
+import Heading from '../basics/Heading/Heading'
 import { VIEWS } from '../../App'
 import './QuizQuestions.css'
 
@@ -84,9 +85,9 @@ const QuizQuestions: React.FC<Props> = ({ setView }: Props) => {
   }
 
   const quizQuestion = (questionNumber: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8): JSX.Element => (
-    <form onSubmit={handleFormSubmit}>
-      <fieldset>
-        <legend>Quiz Question {questionNumber}</legend>
+    <form onSubmit={handleFormSubmit} className='question_form_wrapper'>
+      <div>
+        <Heading level='2'>Quiz Question {questionNumber}</Heading>
         <>
           {avatarImages.map((character, index) => {
             const buttonClassNames = getClassNames({
@@ -125,8 +126,7 @@ const QuizQuestions: React.FC<Props> = ({ setView }: Props) => {
             fillSpace={false}
           />
         </div>
-      </fieldset>
-      {/*<p>Chosen Characters - {JSON.stringify(chosenCharacters)}</p>*/}
+      </div>
     </form>
   )
 

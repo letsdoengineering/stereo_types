@@ -5,7 +5,7 @@
   --default-blue: #177EAB;
 
   /* LIGHT BLUE - eg Icons, Button hover/focus */
-  --light-blue: #26ABE2;
+  --light-blue: rgb(201, 235, 252);
 
   /* LINK BLUE - eg links */
   --link-blue: #157199;

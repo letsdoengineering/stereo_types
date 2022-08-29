@@ -196,8 +196,9 @@ const LandingForm: React.FC<Props> = ({ setView }: Props) => {
               />
             </label>
           </FieldError>
-          <label>
-            <div>Gender:</div>
+
+          <div>
+            Gender:
             <CheckboxGroup groupLabel='Gender'>
               <Radio
                 name='gender'
@@ -218,9 +219,9 @@ const LandingForm: React.FC<Props> = ({ setView }: Props) => {
                 value='M'
               />
             </CheckboxGroup>
-          </label>
-          <label>
-            <div>Character Choice Timing:</div>
+          </div>
+          <div>
+            Character Choice Timing:
             <CheckboxGroup groupLabel='character choice location'>
               <Checkbox
                 id='character-last-input'
@@ -233,7 +234,7 @@ const LandingForm: React.FC<Props> = ({ setView }: Props) => {
                 }}
               />
             </CheckboxGroup>
-          </label>
+          </div>
           <FieldError
             id='picture-sequence-error'
             errorMessage='Error: please chose an option, (cycle through for each child pls)'
@@ -271,8 +272,8 @@ const LandingForm: React.FC<Props> = ({ setView }: Props) => {
               </select>
             </label>
           </FieldError>
-          <label>
-            <div>Quiz Section Order:</div>
+          <div>
+            Quiz Section Order:
             <CheckboxGroup groupLabel='Quiz section before/after smileys questions'>
               <Radio
                 name='quizBeforeSmileyFaces'
@@ -293,10 +294,10 @@ const LandingForm: React.FC<Props> = ({ setView }: Props) => {
                 value='B'
               />
             </CheckboxGroup>
-          </label>
+          </div>
           <Spacing />
           <div className='landing-form_button-wrapper'>
-            <Button aria-describedby='form-error' size='M' type='submit' buttonText='Submit' />
+            <Button size='M' type='submit' buttonText='Submit' />
           </div>
         </div>
       </form>

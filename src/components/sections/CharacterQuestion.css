@@ -1,16 +1,16 @@
 .character_button-image {
-    background-color: transparent;
+    background-color: white;
     margin: 12px;
     cursor: pointer;
     padding: 0;
 }
 
 .character_button-image:focus {
-    outline:  deeppink solid 5px;
+    outline:  #26ABE2 solid 5px;
 }
 
 .character_button-image-selected {
-    outline:  #26ABE2 solid 5px;
+    outline:  deeppink solid 5px;
 }
 
 .character_avatar-image {

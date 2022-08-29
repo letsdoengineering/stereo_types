@@ -1,3 +1,14 @@
+.question_form_wrapper {
+    display: flex;
+    align-content: center;
+    font-size: larger;
+    flex: none;
+    flex-direction: column;
+    padding: 16px;
+    background-color: var(--light-blue);
+    margin: 0 auto;
+}
+
 .landing-form_details-form {
     display: flex;
     text-align: left;
@@ -6,7 +17,7 @@
     flex: none;
     flex-direction: column;
     padding: 16px;
-    background-color: lightgray;
+    background-color: var(--light-blue);
     margin: 0 auto;
 }
 
